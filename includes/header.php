@@ -74,6 +74,11 @@
             background-color: #334155;
         }
 
+        .container {
+            padding: 2rem;
+            background-color: #ffffff;
+        }
+
         @media (max-width: 768px) {
             .menu {
                 position: fixed;
@@ -121,11 +126,10 @@
 
         <ul class="menu">
             <li><a href="./" class="menu-item <?= $current_page == 'index.php' ? 'active' : '' ?>">Home</a></li>
-            <li><a href="services.php"
-                    class="menu-item <?= $current_page == 'services.php' ? 'active' : '' ?>">Services</a></li>
-            <li><a href="blog.php" class="menu-item <?= $current_page == 'blog.php' ? 'active' : '' ?>">Blog</a></li>
-            <li><a href="contact.php"
-                    class="menu-item <?= $current_page == 'contact.php' ? 'active' : '' ?>">Contact</a></li>
+            <li><a href="about.php" class="menu-item <?= $current_page == 'about.php' ? 'active' : '' ?>">About US</a>
+            </li>
+            <li><a href="lessons.php"
+                    class="menu-item <?= $current_page == 'lessons.php' ? 'active' : '' ?>">Lessons</a></li>
         </ul>
 
         <div class="burger">

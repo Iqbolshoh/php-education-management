@@ -9,24 +9,46 @@
 </head>
 
 <style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Poppins', sans-serif;
+        background-color: #f7f7f7;
+    }
+
     .hero {
-        margin-top: 70px;
         text-align: center;
-        padding: 6rem 2rem;
+        padding: 7rem 2rem;
         background: linear-gradient(135deg, #6c5ce7, #a29bfe);
         color: white;
-        border-radius: 10px;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         max-width: 1200px;
         margin: 0 auto;
+        transform: translateY(0);
+        opacity: 0;
+        animation: fadeInUp 1s ease-out forwards;
+    }
+
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .hero__title {
-        font-size: 4rem;
+        font-size: 4.5rem;
         font-weight: 600;
         margin-bottom: 1.5rem;
-        letter-spacing: -1px;
-        text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        letter-spacing: -1.5px;
+        text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+        line-height: 1.2;
     }
 
     .hero__subtitle {
@@ -34,12 +56,13 @@
         font-weight: 400;
         margin-bottom: 2.5rem;
         opacity: 0.9;
+        letter-spacing: 0.5px;
     }
 
     .hero__button {
-        font-size: 1.6rem;
+        font-size: 1.7rem;
         font-weight: 600;
-        padding: 1.2rem 2.5rem;
+        padding: 1.3rem 3rem;
         background-color: #ff6b81;
         color: white;
         border-radius: 50px;
@@ -47,15 +70,32 @@
         cursor: pointer;
         transition: all 0.3s ease;
         letter-spacing: 1px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
     }
 
     .hero__button:hover {
         background-color: #d65a71;
         transform: scale(1.05);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     }
 
     .hero__button:focus {
         outline: none;
+    }
+
+    @media (max-width: 768px) {
+        .hero__title {
+            font-size: 2.5rem;
+        }
+
+        .hero__subtitle {
+            font-size: 1.4rem;
+        }
+
+        .hero__button {
+            font-size: 1.4rem;
+            padding: 1rem 2rem;
+        }
     }
 </style>
 
@@ -63,11 +103,17 @@
 
     <?php include 'includes/header.php' ?>
 
-    <section class="hero">
-        <h1 class="hero__title">Welcome to Letter Edu</h1>
-        <p class="hero__subtitle">Your trusted platform for online education and services.</p>
-        <button class="hero__button">Get Started</button>
-    </section>
+    <div class="container">
+
+        <section class="hero">
+            <h1 class="hero__title">Welcome to Letter Edu</h1>
+            <p class="hero__subtitle">Your trusted platform for online education and services.</p>
+            <a href="about.php"><button class="hero__button">About US</button></a>
+        </section>
+
+    </div>
+
+    <?php include 'includes/footer.php' ?>
 
 </body>
 
