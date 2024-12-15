@@ -1,6 +1,6 @@
-CREATE DATABASE IF NOT EXISTS account;
+CREATE DATABASE IF NOT EXISTS letter_edu;
 
-USE account;
+USE letter_edu;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -11,6 +11,14 @@ CREATE TABLE IF NOT EXISTS users (
     password VARCHAR(255) NOT NULL,
     profile_picture VARCHAR(255) DEFAULT 'default.png',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE contact (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    twitter VARCHAR(255),
+    facebook VARCHAR(255),
+    instagram VARCHAR(255),
+    linkedin VARCHAR(255)
 );
 
 INSERT INTO

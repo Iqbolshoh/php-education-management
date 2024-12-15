@@ -20,6 +20,7 @@ $query = new Database();
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
   <title>AdminLTE 3 | Starter</title>
   <?php include 'includes/css.php'; ?>
 </head>
