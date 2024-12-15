@@ -37,12 +37,12 @@
         letter-spacing: 0.5px;
     }
 
-    .about {
+    .call-to-action {
         border-top-right-radius: 15px;
         border-top-left-radius: 15px;
-        background-color: #fff3e6;
-        color: #333;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+        color: white;
+        animation: fadeInUp 1s ease-out forwards;
     }
 
     .features {
@@ -50,11 +50,19 @@
         border-bottom-left-radius: 15px;
         background: linear-gradient(135deg, #ff6b81, #ff9a9e);
         color: white;
+        animation: fadeInUp 1s ease-out forwards;
     }
 
-    .call-to-action {
-        background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-        color: white;
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .btn {
@@ -100,15 +108,6 @@
                 exploring
                 our lessons!</p>
             <button class="btn" onclick="window.location.href='lessons.php'">Start Learning</button>
-        </section>
-
-        <section class="section about">
-            <h1 class="section__title">About Letter Edu</h1>
-            <p class="section__content">Letter Edu is an online platform dedicated to helping individuals learn English
-                efficiently. Our mission is to provide high-quality education with interactive exercises, vocabulary
-                building, and advanced language skills to help users progress and master the English language. Whether
-                you're a beginner or looking to enhance your proficiency, Letter Edu has the right tools to assist you
-                in your learning journey.</p>
         </section>
 
         <section class="section features">

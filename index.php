@@ -83,6 +83,20 @@
         outline: none;
     }
 
+    .features {
+        background: linear-gradient(135deg, #ff6b81, #ff9a9e);
+        color: white;
+        text-align: center;
+        padding: 7rem 2rem;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        max-width: 1200px;
+        margin: 0 auto;
+        transform: translateY(0);
+        opacity: 0;
+        animation: fadeInUp 1s ease-out forwards;
+    }
+
     @media (max-width: 768px) {
         .hero__title {
             font-size: 2.5rem;
@@ -109,6 +123,16 @@
             <h1 class="hero__title">Welcome to Letter Edu</h1>
             <p class="hero__subtitle">Your trusted platform for online education and services.</p>
             <a href="about.php"><button class="hero__button">About US</button></a>
+        </section>
+
+        <br>
+
+        <section class="features">
+            <p class="hero__subtitle">Letter Edu is an online platform dedicated to helping individuals learn English
+                efficiently. Our mission is to provide high-quality education with interactive exercises, vocabulary
+                building, and advanced language skills to help users progress and master the English language. Whether
+                you're a beginner or looking to enhance your proficiency, Letter Edu has the right tools to assist you
+                in your learning journey.</p>
         </section>
 
     </div>
