@@ -124,40 +124,6 @@ if (array_key_exists($lessonid, $lessons)) {
         justify-content: center;
     }
 
-    .btn {
-        padding: 15px 30px;
-        border: none;
-        border-radius: 5px;
-        font-size: 18px;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background-color 0.3s, transform 0.2s;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .btn-back {
-        background-color: #007bff;
-        color: #fff;
-    }
-
-    .btn-back:hover {
-        background-color: #0056b3;
-        transform: translateY(-2px);
-    }
-
-    .btn-test {
-        background-color: #28a745;
-        color: #fff;
-    }
-
-    .btn-test:hover {
-        background-color: #218838;
-        transform: translateY(-2px);
-    }
-
-    a {
-        text-decoration: none;
-    }
 
     @media (max-width: 768px) {
         .lesson-title {
@@ -202,11 +168,11 @@ if (array_key_exists($lessonid, $lessons)) {
 
             <div class="buttons">
                 <a href="lessons.php">
-                    <button class="btn btn-back">Back to Lessons</button>
+                    Back to Lessons
                 </a>
 
                 <a href="woorksheet.php?lessonid=<?= $lessonid ?>">
-                    <button class="btn btn-test">Worksheet</button>
+                    Worksheet
                 </a>
             </div>
         </section>
