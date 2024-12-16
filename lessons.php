@@ -1,3 +1,8 @@
+<?php include 'config.php' ?>
+<?php $query = new Database(); ?>
+<?php $lessons = $query->select('lessons', '*') ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -135,11 +140,6 @@
 
         <section class="section lessons-list">
             <?php
-            $lessons = [
-                ['title' => 'Basic English', 'description' => 'Learn the fundamentals of English, including grammar, vocabulary, and basic sentence structures.', 'id' => 1],
-                ['title' => 'Intermediate English', 'description' => 'Enhance your English skills with intermediate lessons on grammar, reading, and speaking.', 'id' => 2],
-                ['title' => 'Advanced English', 'description' => 'Master advanced topics, including complex grammar, professional vocabulary, and fluent conversation.', 'id' => 3],
-            ];
 
             $delay = 0;
 
@@ -151,7 +151,7 @@
                         <button class="btn">Start Learning</button>
                     </a>
                 </div>
-                <?php
+            <?php
                 $delay += 0.1;
             endforeach;
             ?>
