@@ -140,21 +140,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     .question {
-        background-color: rgba(41, 127, 185, 0.1);
+        background-color: rgba(51, 0, 255, 0.1);
         border-radius: 5px;
         padding: 33px 11px;
         opacity: 0;
         transition: opacity 0.5s ease-in-out;
-    }
-
-    .correct {
-        background-color: #28a745;
-        color: white;
-    }
-
-    .error {
-        background-color: #e74c3c;
-        color: white;
     }
 
     @keyframes fadeIn {
@@ -215,7 +205,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $delay = 0.1 * $index;
                 ?>
 
-                <div class="question" style="animation-delay: <?= $delay ?>s; opacity: 0;">
+                <div class="question" style="animation-delay: <?= $delay ?>s; opacity: 0;" data-index="<?= $index ?>">
                     <label for="answer<?= $index ?>">
                         <strong><?= $index + 1 ?>)</strong>
                         <?php
@@ -250,24 +240,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <script>
         const form = document.getElementById('quizForm');
+        const questions = document.querySelectorAll('.question');
         const submitBtn = document.getElementById('submitBtn');
         const selectElements = document.querySelectorAll('select');
 
-        form.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the page from reloading
-            const score = calculateScore();
+        let isSubmitted = false;
 
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            if (isSubmitted) {
+                Swal.fire({
+                    title: 'You have already submitted your answers.',
+                    text: 'Would you like to try again?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, Refresh Page',
+                    cancelButtonText: 'No, Stay Here',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        location.reload();
+                    }
+                });
+                return;
+            }
+
+            const score = calculateScore();
             const totalQuestions = <?= count($questions) ?>;
             const percentage = Math.round((score / totalQuestions) * 100);
 
-            // Show the result using SweetAlert
             Swal.fire({
                 title: `Your Result: ${percentage}%`,
                 text: `Your score is: ${score} out of ${totalQuestions}`,
                 icon: 'success'
+            }).then(() => {
+                isSubmitted = true;
             });
 
-            // Disable all select elements after the quiz is submitted
             selectElements.forEach(select => {
                 select.disabled = true;
             });
@@ -280,12 +289,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php foreach ($questions as $index => $question): ?>
                 if (formData.get('answer<?= $index ?>') === '<?= $question['correct_answer'] ?>') {
                     score++;
+                    document.querySelector(`.question[data-index="<?= $index ?>"]`).style.backgroundColor = "#d4edda";
+                } else {
+                    document.querySelector(`.question[data-index="<?= $index ?>"]`).style.backgroundColor = "#f8d7da";
                 }
             <?php endforeach; ?>
 
             return score;
         }
     </script>
+
 
 </body>
 
