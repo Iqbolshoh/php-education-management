@@ -17,13 +17,14 @@
     }
 
     .hero {
+        width: 100%;
         text-align: center;
         padding: 7rem 2rem;
         background: linear-gradient(135deg, #6c5ce7, #a29bfe);
         color: white;
-        border-radius: 15px;
+        border-top-right-radius: 15px;
+        border-top-left-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        max-width: 1200px;
         margin: 0 auto;
         transform: translateY(0);
         opacity: 0;
@@ -88,9 +89,10 @@
         color: white;
         text-align: center;
         padding: 7rem 2rem;
-        border-radius: 15px;
+        border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        max-width: 1200px;
+        width: 100%;
         margin: 0 auto;
         transform: translateY(0);
         opacity: 0;

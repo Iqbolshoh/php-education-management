@@ -15,7 +15,6 @@
         .section {
             padding: 5rem 2rem;
             text-align: center;
-            margin: 2rem 0;
         }
 
         .section__title {
@@ -74,8 +73,17 @@
         }
 
         .features {
-            border-radius: 15px;
+            border-bottom-right-radius: 15px;
+            border-bottom-left-radius: 15px;
             background: linear-gradient(135deg, #ff6b81, #ff9a9e);
+            color: white;
+            animation: slideUpFade 0.7s ease forwards;
+        }
+
+        .call-to-action {
+            border-top-right-radius: 15px;
+            border-top-left-radius: 15px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
             color: white;
             animation: slideUpFade 0.7s ease forwards;
         }
@@ -132,10 +140,14 @@
     <?php include 'includes/header.php'; ?>
 
     <div class="container">
+
+        <section class="section call-to-action">
+            <h2 class="section__title">Our Lessons</h2>
+            <p class="section__content">Explore our lessons designed to help you master the English language at every level. Choose a lesson below to get started!</p>
+        </section>
+
         <section class="section features">
-            <h1 class="section__title">Our Lessons</h1>
-            <p class="section__content">Explore our lessons designed to help you master the English language at every
-                level. Choose a lesson below to get started!</p>
+            <p class="section__content">Discover our carefully crafted lessons designed to help you improve your English skills at every level, from beginner to advanced. Whether you're looking to build a solid foundation or enhance your fluency, we’ve got the perfect lesson for you. Start your journey below and unlock your potential to speak and write with confidence!</p>
         </section>
 
         <section class="section lessons-list">

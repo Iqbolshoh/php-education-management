@@ -19,7 +19,6 @@
     .section {
         padding: 5rem 2rem;
         text-align: center;
-        margin: 0 0 2rem 0;
     }
 
     .section__title {
@@ -101,7 +100,6 @@
 
     <div class="container">
 
-
         <section class="section call-to-action">
             <h2 class="section__title">Start Learning Today!</h2>
             <p class="section__content">Don't wait to improve your English. Click below to start practicing and
@@ -109,6 +107,8 @@
                 our lessons!</p>
             <button class="btn" onclick="window.location.href='lessons.php'">Start Learning</button>
         </section>
+
+        <br>
 
         <section class="section features">
             <h2 class="section__title">Features of Letter Edu</h2>

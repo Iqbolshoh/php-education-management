@@ -47,22 +47,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <style>
-    body {
-        font-family: 'Arial', sans-serif;
-        background-color: #f0f4f8;
-        margin: 0;
-        padding: 0;
-    }
-
     .container {
         max-width: 900px;
-        margin: 20px auto;
         padding: 30px;
         background-color: #ffffff;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         animation: slideUpFade 0.7s ease forwards;
     }
+
 
     .container h1 {
         color: #2c3e50;
@@ -164,7 +157,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         color: white;
     }
 
-
     @keyframes fadeIn {
         0% {
             opacity: 0;
@@ -233,7 +225,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <select name="answer<?= $index ?>" id="answer<?= $index ?>">
                             <?php foreach ($options as $option): ?>
                                 <?php $option = $option['option_text'] ?>
-                                <option value="<?= htmlspecialchars($option) ?>" <?= isset($_POST['answer' . $index]) && $_POST['answer' . $index] === $option ? 'selected' : '' ?>>
+                                <option value="<?= htmlspecialchars($option) ?>"
+                                    <?= isset($_POST['answer' . $index]) && $_POST['answer' . $index] === $option ? 'selected' : '' ?>>
                                     <?= htmlspecialchars($option) ?>
                                 </option>
                             <?php endforeach; ?>
@@ -246,7 +239,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <?php endforeach; ?>
 
             <div class="buttons">
-                <button type="submit" id="submitBtn">Submit</button>
+                <button type="submit" id="submitBtn">Check the Answer</button>
                 <a href="lesson_detail.php?lessonid=<?= $lessonid ?>">Back to Lessons</a>
             </div>
         </form>
@@ -261,31 +254,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         const selectElements = document.querySelectorAll('select');
 
         form.addEventListener('submit', function(event) {
-            event.preventDefault();
+            event.preventDefault(); // Prevent the page from reloading
             const score = calculateScore();
 
             const totalQuestions = <?= count($questions) ?>;
             const percentage = Math.round((score / totalQuestions) * 100);
 
+            // Show the result using SweetAlert
             Swal.fire({
                 title: `Your Result: ${percentage}%`,
                 text: `Your score is: ${score} out of ${totalQuestions}`,
-                icon: 'success',
-                showCancelButton: true,
-                confirmButtonText: 'Recycling',
-                cancelButtonText: 'Go to Lessons',
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    selectElements.forEach(select => {
-                        select.disabled = false;
-                    });
-
-                    submitBtn.style.display = 'block';
-                } else if (result.isDismissed) {
-                    window.location.href = 'lessons.php';
-                }
+                icon: 'success'
             });
 
+            // Disable all select elements after the quiz is submitted
+            selectElements.forEach(select => {
+                select.disabled = true;
+            });
         });
 
         function calculateScore() {
@@ -301,6 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             return score;
         }
     </script>
+
 </body>
 
 </html>

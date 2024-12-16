@@ -75,6 +75,10 @@
         }
 
         .container {
+            width: 100%;
+            margin: auto;
+            margin-top: 20px;
+            margin-bottom: 30px;
             padding: 2rem;
             background-color: #ffffff;
         }
