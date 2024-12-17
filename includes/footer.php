@@ -2,7 +2,7 @@
     <div class="footer-container">
         <div class="footer-content">
             <div class="footer-logo">
-                <h1>Letter Edu</h1>
+                <h1>UZWRITER.UZ</h1>
                 <p>Your journey to mastering English starts here.</p>
             </div>
             <div class="footer-links">
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Letter Edu. All Rights Reserved.</p>
+            <p>&copy; 2024 UZWRITER.UZ. All Rights Reserved.</p>
         </div>
     </div>
 </footer>

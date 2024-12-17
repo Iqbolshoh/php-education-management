@@ -122,7 +122,7 @@
 
 <header class="header">
     <nav class="navbar">
-        <a href="./" class="logo">Letter Edu</a>
+        <a href="./" class="logo">UZWRITER.UZ</a>
 
         <?php
         $current_page = basename($_SERVER['PHP_SELF']);
