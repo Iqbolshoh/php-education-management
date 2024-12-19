@@ -132,7 +132,7 @@ if (isset($_GET['lessonid'])) {
         .task_item input[type="radio"],
         .task_item select,
         .task_item input[type="text"] {
-            width: 90%;
+            width: 100%;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
@@ -245,10 +245,12 @@ if (isset($_GET['lessonid'])) {
             font-weight: bold;
             color: #4CAF50;
             text-align: center;
-            margin-top: 20px;
-            margin: 20px 30px;
+            width: 100%;
+            max-width: 900px;
+            margin: 20px auto;
             background-color: #f0f8ff;
             padding: 10px;
+            box-sizing: border-box;
             border-radius: 8px;
             border: 2px solid #4CAF50;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
