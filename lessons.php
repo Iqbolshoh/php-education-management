@@ -33,10 +33,10 @@
         }
 
         .lessons-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
+            justify-items: center;
         }
 
         .lesson-card {
@@ -50,7 +50,7 @@
             color: white;
             position: relative;
             opacity: 0;
-            animation: slideUpFade 0.7s ease forwards;
+            animation: slideUpFade 1s ease forwards;
         }
 
         .lesson-card:hover {
@@ -77,7 +77,7 @@
             border-bottom-left-radius: 15px;
             background: linear-gradient(135deg, #ff6b81, #ff9a9e);
             color: white;
-            animation: slideUpFade 0.7s ease forwards;
+            animation: slideUpFade 1s ease forwards;
         }
 
         .call-to-action {
@@ -85,7 +85,7 @@
             border-top-left-radius: 15px;
             background: linear-gradient(135deg, #6c5ce7, #a29bfe);
             color: white;
-            animation: slideUpFade 0.7s ease forwards;
+            animation: slideUpFade 1s ease forwards;
         }
 
         .btn {
@@ -127,11 +127,6 @@
             .section__content {
                 font-size: 1.4rem;
             }
-
-            .lessons-list {
-                flex-direction: column;
-                align-items: center;
-            }
         }
     </style>
 </head>
@@ -145,6 +140,8 @@
             <h2 class="section__title">Our Lessons</h2>
             <p class="section__content">Explore our lessons designed to help you master the English language at every level. Choose a lesson below to get started!</p>
         </section>
+
+        <br>
 
         <section class="section features">
             <p class="section__content">Discover our carefully crafted lessons designed to help you improve your English skills at every level, from beginner to advanced. Whether you're looking to build a solid foundation or enhance your fluency, we’ve got the perfect lesson for you. Start your journey below and unlock your potential to speak and write with confidence!</p>

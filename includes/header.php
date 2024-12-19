@@ -58,17 +58,17 @@
         .menu-item:hover,
         .menu-item.active {
             color: #482ff7;
-            font-weight: 500;
+            font-weight: bold;
         }
 
-        .burger {
+        .toggle {
             display: none;
             flex-direction: column;
             gap: 0.6rem;
             cursor: pointer;
         }
 
-        .burger-line {
+        .toggle-line {
             width: 25px;
             height: 3px;
             background-color: #334155;
@@ -84,6 +84,17 @@
         }
 
         @media (max-width: 768px) {
+            header {
+                margin-bottom: 40px;
+            }
+
+            .navbar {
+                position: fixed;
+                width: 100%;
+                justify-content: space-between;
+                z-index: 1000;
+            }
+
             .menu {
                 position: fixed;
                 left: -100%;
@@ -94,26 +105,32 @@
                 box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
                 transition: all 0.3s ease;
                 z-index: 1000;
+                text-align: center;
                 padding: 2rem;
+            }
+
+            .menu-item {
+                display: block;
+                margin: 15px 10px;
             }
 
             .menu.active {
                 left: 0;
             }
 
-            .burger {
+            .toggle {
                 display: flex;
             }
 
-            .burger.active .burger-line:nth-child(1) {
+            .toggle.active .toggle-line:nth-child(1) {
                 transform: translateY(8px) rotate(45deg);
             }
 
-            .burger.active .burger-line:nth-child(2) {
+            .toggle.active .toggle-line:nth-child(2) {
                 opacity: 0;
             }
 
-            .burger.active .burger-line:nth-child(3) {
+            .toggle.active .toggle-line:nth-child(3) {
                 transform: translateY(-8px) rotate(-45deg);
             }
         }
@@ -122,7 +139,7 @@
 
 <header class="header">
     <nav class="navbar">
-        <a href="./" class="logo">UZWRITER.UZ</a>
+        <a href="/" class="logo">UZWRITER.UZ</a>
 
         <?php
         $current_page = basename($_SERVER['PHP_SELF']);
@@ -136,20 +153,20 @@
                     class="menu-item <?= $current_page == 'lessons.php' ? 'active' : '' ?>">Lessons</a></li>
         </ul>
 
-        <div class="burger">
-            <span class="burger-line"></span>
-            <span class="burger-line"></span>
-            <span class="burger-line"></span>
+        <div class="toggle">
+            <span class="toggle-line"></span>
+            <span class="toggle-line"></span>
+            <span class="toggle-line"></span>
         </div>
     </nav>
 </header>
 
 <script>
-    const burger = document.querySelector('.burger');
+    const toggle = document.querySelector('.toggle');
     const menu = document.querySelector('.menu');
 
-    burger.addEventListener('click', () => {
-        burger.classList.toggle('active');
+    toggle.addEventListener('click', () => {
+        toggle.classList.toggle('active');
         menu.classList.toggle('active');
     });
 </script>

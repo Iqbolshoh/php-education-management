@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         background-color: #ffffff;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        animation: slideUpFade 0.7s ease forwards;
+        animation: slideUpFade 1s ease forwards;
     }
 
 
@@ -61,19 +61,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         color: #2c3e50;
         margin-bottom: 20px;
         font-size: 24px;
-        animation: slideUpFade 0.7s ease forwards;
+        animation: slideUpFade 1s ease forwards;
     }
 
     .container p {
         font-size: 16px;
         color: #555;
         margin-bottom: 20px;
-        animation: slideUpFade 0.7s ease forwards;
+        animation: slideUpFade 1s ease forwards;
     }
 
     .question {
         margin-bottom: 20px;
-        animation: slideUpFade 0.7s ease forwards;
+        animation: slideUpFade 1s ease forwards;
     }
 
     .question label {
@@ -209,7 +209,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <label for="answer<?= $index ?>">
                         <strong><?= $index + 1 ?>)</strong>
                         <?php
-                        $parts = explode('____', $question['sentence']);
+                        $parts = explode('_____', $question['sentence']);
                         echo $parts[0];
                         ?>
                         <select name="answer<?= $index ?>" id="answer<?= $index ?>">
