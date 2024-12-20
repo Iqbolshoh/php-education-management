@@ -66,7 +66,6 @@ if (isset($_GET['lessonid'])) {
         }
 
         $totalQuestions = count($tests) + count($tru_falses) + count($dropdowns) + count($fill_in_the_blanks) + count($matchings);
-        echo "<h2 class='result'>Result: You answered $correctAnswersCount questions correctly out of $totalQuestions questions</h2>";
     }
 ?>
 
@@ -240,7 +239,7 @@ if (isset($_GET['lessonid'])) {
             font-weight: bold;
             color: #4CAF50;
             text-align: center;
-            width: 100%;
+            width: calc(100% - 40px);
             max-width: 900px;
             margin: 20px auto;
             background-color: #f0f8ff;
@@ -262,7 +261,9 @@ if (isset($_GET['lessonid'])) {
         <br>
         <br>
         <br>
-
+        <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') { ?>
+            <?= "<h2 class='result'>Result: You answered $correctAnswersCount questions correctly out of $totalQuestions questions</h2>" ?>
+        <?php }; ?>
         <h1 class="title">Task for: <?= $lesson[0]['title'] ?></h1>
 
         <?php if (!empty($tests) || !empty($tru_falses) || !empty($dropdowns) || !empty($fill_in_the_blanks) || !empty($matchings)) : ?>

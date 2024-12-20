@@ -11,6 +11,7 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="about.php">About Us</a></li>
                     <li><a href="lessons.php">Lessons</a></li>
+                    <li><a href="https://iqbolshoh.uz">iqbolshoh.uz</a></li>
                 </ul>
             </div>
             <div class="footer-social">
