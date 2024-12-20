@@ -11,7 +11,6 @@
                     <li><a href="index.php">Home</a></li>
                     <li><a href="about.php">About Us</a></li>
                     <li><a href="lessons.php">Lessons</a></li>
-                    <li><a href="contact.php">Contact</a></li>
                 </ul>
             </div>
             <div class="footer-social">
@@ -31,14 +30,6 @@
 </footer>
 
 <style>
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        display: flex;
-        flex-direction: column;
-    }
-
     footer {
         background-color: #6c5ce7;
         color: white;

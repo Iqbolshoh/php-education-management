@@ -79,35 +79,29 @@ if (isset($_GET['lessonid'])) {
         <title>Task for: <?= $lesson[0]['title'] ?></title>
     </head>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 20px;
-            background-color: #f9fafb;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        h1 {
+        .title {
             color: #6c5ce7;
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin-bottom: 30px;
             letter-spacing: 2px;
         }
 
         form {
             margin: 0 auto;
+            width: calc(100% - 40px);
             max-width: 900px;
-            padding: 25px;
+            padding: 10px;
             border-radius: 8px;
             background-color: #ffffff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        h3 {
+        .title_h3 {
             color: #ff6b81;
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 2.2rem;
+            margin-top: 17px;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -124,7 +118,7 @@ if (isset($_GET['lessonid'])) {
 
         .task_item label {
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.5rem;
             margin-bottom: 15px;
             display: block;
         }
@@ -136,7 +130,7 @@ if (isset($_GET['lessonid'])) {
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            font-size: 1rem;
+            font-size: 1.5rem;
             margin-top: 8px;
             box-sizing: border-box;
             transition: all 0.3s ease;
@@ -157,7 +151,7 @@ if (isset($_GET['lessonid'])) {
         }
 
         .task_item .question-number {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: bold;
             color: #6c5ce7;
             margin-right: 10px;
@@ -181,7 +175,7 @@ if (isset($_GET['lessonid'])) {
 
         .submit-btn {
             padding: 14px 30px;
-            font-size: 1.2em;
+            font-size: 1.5rem;
             background-color: #6c5ce7;
             color: white;
             border: none;
@@ -203,12 +197,12 @@ if (isset($_GET['lessonid'])) {
         }
 
         @media screen and (max-width: 768px) {
-            h1 {
+            .title {
                 font-size: 2rem;
             }
 
             .submit-btn {
-                font-size: 1.1em;
+                font-size: 1.5rem;
             }
 
             .task_item {
@@ -216,7 +210,7 @@ if (isset($_GET['lessonid'])) {
             }
 
             .task_item label {
-                font-size: 1rem;
+                font-size: 1.5rem;
             }
 
             .task_item input[type="radio"],
@@ -231,6 +225,7 @@ if (isset($_GET['lessonid'])) {
         }
 
         .word {
+            font-size: 1.5rem;
             display: inline-block;
             padding: 5px 10px;
             margin: 5px;
@@ -241,7 +236,7 @@ if (isset($_GET['lessonid'])) {
         }
 
         .result {
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: bold;
             color: #4CAF50;
             text-align: center;
@@ -263,14 +258,18 @@ if (isset($_GET['lessonid'])) {
     </style>
 
     <body>
+        <?php include 'includes/header.php'; ?>
+        <br>
+        <br>
+        <br>
 
-        <h1>Task for: <?= $lesson[0]['title'] ?></h1>
+        <h1 class="title">Task for: <?= $lesson[0]['title'] ?></h1>
 
         <?php if (!empty($tests) || !empty($tru_falses) || !empty($dropdowns) || !empty($fill_in_the_blanks) || !empty($matchings)) : ?>
             <form method="post">
 
                 <?php if (!empty($tests)) : ?>
-                    <h3>Test Questions</h3>
+                    <h3 class="title_h3">Test Questions</h3>
                     <div class="task_item">
                         <?php foreach ($tests as $index => $test) :
                             $testid = $test['id'];
@@ -293,7 +292,7 @@ if (isset($_GET['lessonid'])) {
                 <?php endif; ?>
 
                 <?php if (!empty($tru_falses)) : ?>
-                    <h3>True/False Questions</h3>
+                    <h3 class="title_h3">True/False Questions</h3>
                     <div class="task_item">
                         <?php foreach ($tru_falses as $index => $tru_false) : ?>
                             <label for="tru_false_statement_<?= $tru_false['id']; ?>">
@@ -313,7 +312,7 @@ if (isset($_GET['lessonid'])) {
                 <?php endif; ?>
 
                 <?php if (!empty($dropdowns)) : ?>
-                    <h3>Dropdown Question</h3>
+                    <h3 class="title_h3">Dropdown Question</h3>
                     <div class="task_item">
                         <?php foreach ($dropdowns as $index => $dropdown) : ?>
                             <?php $dropdownOptions[$index] = $dropdown['correct_answer']; ?>
@@ -334,7 +333,7 @@ if (isset($_GET['lessonid'])) {
                 <?php endif; ?>
 
                 <?php if (!empty($fill_in_the_blanks)) : ?>
-                    <h3>Fill in the Blank Questions</h3>
+                    <h3 class="title_h3">Fill in the Blank Questions</h3>
                     <div class="task_item">
                         <div id="words-container" class="words"></div>
                         <?php foreach ($fill_in_the_blanks as $index => $blank) : ?>
@@ -352,7 +351,7 @@ if (isset($_GET['lessonid'])) {
                         <?php $matchingOptions[$index] = $matching['right_side']; ?>
                     <?php endforeach; ?>
 
-                    <h3>Matching Questions</h3>
+                    <h3 class="title_h3">Matching Questions</h3>
                     <div class="task_item">
                         <?php foreach ($matchings as $index => $matching) : ?>
                             <?php shuffle($matchingOptions); ?>
@@ -380,6 +379,9 @@ if (isset($_GET['lessonid'])) {
             </form>
         <?php endif; ?>
 
+        <br><br>
+
+        <?php include 'includes/footer.php'; ?>
     </body>
 
     <script>
