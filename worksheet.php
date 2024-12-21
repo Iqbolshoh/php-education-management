@@ -90,7 +90,7 @@ if (isset($_GET['lessonid'])) {
             margin: 0 auto;
             width: calc(100% - 40px);
             max-width: 900px;
-            padding: 10px;
+            padding: 20px;
             border-radius: 8px;
             background-color: #ffffff;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -275,6 +275,7 @@ if (isset($_GET['lessonid'])) {
                         <?php foreach ($tests as $index => $test) :
                             $testid = $test['id'];
                             $options = $query->select('test_options', '*', "test_id = $testid");
+                            shuffle($options);
                         ?>
                             <label for="test_question_<?= $testid; ?>">
                                 <?= ($index + 1) . '. ' . htmlspecialchars($test['question']); ?>

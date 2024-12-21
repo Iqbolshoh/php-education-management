@@ -23,6 +23,8 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['session_token'])) {
     $_SESSION['loggedin'] = true;
     $_SESSION['username'] = $_COOKIE['username'];
     $_SESSION['user_id'] = $result['id'];
+    $_SESSION['first_name'] = $result['first_name'];
+    $_SESSION['last_name'] = $result['last_name'];
 
     header("Location: ../");
     exit;
@@ -39,6 +41,8 @@ if (isset($_POST['submit'])) {
         $_SESSION['loggedin'] = true;
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
+        $_SESSION['first_name'] = $user['first_name'];
+        $_SESSION['last_name'] = $user['last_name'];
 
         setcookie('username', $username, time() + (86400 * 30), "/", "", true, true);
         setcookie('session_token', session_id(), time() + (86400 * 30), "/", "", true, true);

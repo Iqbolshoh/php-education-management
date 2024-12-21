@@ -138,7 +138,7 @@ VALUES
         'video',
         'Introduction to English Alphabet',
         'This lesson covers the English alphabet, helping you recognize each letter, understand its pronunciation, and discover common words that begin with each letter. You will also see demonstrations of how each letter is articulated in various words. This foundational lesson will strengthen your reading and writing skills and help you improve letter recognition for both uppercase and lowercase characters.',
-        'https://youtube.com/embed/_neP6775wCY?si=uK0q15aYVrUBiyK7',
+        '_neP6775wCY?si=uK0q15aYVrUBiyK7',
         1
     ),
     (
@@ -154,7 +154,7 @@ VALUES
         'video',
         'Basic Pronunciation Tips',
         'Improve your pronunciation with clear examples and tips on how to pronounce common words in English. We’ll focus on identifying frequent pronunciation mistakes and strategies to avoid them. This lesson highlights the importance of stress and intonation in spoken English, teaching you how to sound more natural when speaking. You will also practice mimicking native speakers to develop better fluency and clarity in your pronunciation.',
-        'https://youtube.com/embed/_neP6775wCY?si=uK0q15aYVrUBiyK7',
+        '_neP6775wCY?si=uK0q15aYVrUBiyK7',
         2
     ),
     (
@@ -170,7 +170,7 @@ VALUES
         'video',
         'Intermediate Grammar Video',
         'This video lesson dives into intermediate grammar concepts like past perfect tense, conditionals, and indirect speech. You will learn how to use these grammatical structures in everyday situations, focusing on their applications in both writing and speaking. The lesson includes interactive examples and practical exercises to help reinforce these rules and enhance your ability to use them in real-life conversations.',
-        'https://youtube.com/embed/_neP6775wCY?si=uK0q15aYVrUBiyK7',
+        '_neP6775wCY?si=uK0q15aYVrUBiyK7',
         1
     ),
     (
@@ -186,7 +186,7 @@ VALUES
         'video',
         'Idioms and Expressions',
         'Discover the world of idioms and expressions in this video lesson. Learn the meanings behind common idioms used in everyday conversations, such as "break the ice" and "get cold feet." We will also explore cultural context and how idioms are used by native speakers. You’ll have the chance to practice these idiomatic expressions in your own sentences and understand their significance in informal conversations.',
-        'https://youtube.com/embed/_neP6775wCY?si=uK0q15aYVrUBiyK7',
+        '_neP6775wCY?si=uK0q15aYVrUBiyK7',
         2
     ),
     (
@@ -218,7 +218,7 @@ VALUES
         'video',
         'Advanced Grammar and Vocabulary',
         'Master advanced grammar topics and professional vocabulary in this lesson. We’ll cover complex structures like advanced tenses, inversion, and subjunctive mood. Additionally, we will explore high-level vocabulary used in academic and professional contexts. With interactive examples, you’ll learn how to avoid common mistakes and develop confidence in using advanced grammar and vocabulary in your writing and speaking.',
-        'https://youtube.com/embed/_neP6775wCY?si=uK0q15aYVrUBiyK7',
+        '_neP6775wCY?si=uK0q15aYVrUBiyK7',
         1
     ),
     (
@@ -234,7 +234,7 @@ VALUES
         'video',
         'Professional Writing Tips',
         'Learn valuable techniques for writing professional and effective documents such as reports, proposals, and business emails. This video lesson will guide you through the process of crafting compelling content, organizing ideas logically, and ensuring error-free writing. You will see real-world examples and gain the confidence to write clearly and persuasively in a professional context.',
-        'https://youtube.com/embed/_neP6775wCY?si=uK0q15aYVrUBiyK7',
+        '_neP6775wCY?si=uK0q15aYVrUBiyK7',
         2
     ),
     (

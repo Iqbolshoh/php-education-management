@@ -18,7 +18,7 @@ if (isset($_GET['lessonid'])) {
     }
 
     $lesson = $lesson[0];
-    $lesson_items = $query->select('lesson_items', '*', "lesson_id = $lessonid");
+    $lesson_items = $query->select('lesson_items', '*', "lesson_id = $lessonid ORDER BY position ASC");
 } else {
     header('Location: lessons.php');
     exit();
@@ -56,7 +56,7 @@ if (isset($_GET['lessonid'])) {
             font-size: 18px;
             color: #555;
             margin-bottom: 30px;
-            text-align: justify;
+            text-align: center;
         }
 
         .lesson-content h2,
@@ -186,7 +186,7 @@ if (isset($_GET['lessonid'])) {
                 <?php elseif ($item['type'] == 'video'): ?>
                     <div class="video-wrapper">
                         <h2 class="video-title"><?= $item['title'] ?></h2>
-                        <iframe src="<?= htmlspecialchars($item['link']) ?>" title="<?= htmlspecialchars($item['title']) ?>"></iframe>
+                        <iframe src="https://youtube.com/embed/<?= htmlspecialchars($item['link']) ?>" title="<?= htmlspecialchars($item['title']) ?>"></iframe>
                         <p>&emsp;<?= $item['description'] ?></p>
                     </div>
 

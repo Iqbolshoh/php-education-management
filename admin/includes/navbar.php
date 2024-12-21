@@ -1,7 +1,7 @@
 <?php
 function pagePath($pageTitle, $breadcrumb)
 {
-    ?>
+?>
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -25,7 +25,7 @@ function pagePath($pageTitle, $breadcrumb)
             </div>
         </div>
     </div>
-    <?php
+<?php
 }
 ?>
 
@@ -93,7 +93,7 @@ function pagePath($pageTitle, $breadcrumb)
                 <img src="./src/images/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Iqbolshoh Ilhomjonov</a>
+                <a href="./user.php" class="d-block"><?= $_SESSION['last_name'] . " " . $_SESSION['first_name'] ?></a>
             </div>
         </div>
 
@@ -101,9 +101,9 @@ function pagePath($pageTitle, $breadcrumb)
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
-                <li class="nav-item has-treeview <?= in_array($current_page, ['index.php']) ? 'menu-open' : ''; ?>">
-                    <a class="nav-link <?= in_array($current_page, ['index.php']) ? 'active' : ''; ?>">
-                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                <li class="nav-item has-treeview <?= in_array($current_page, ['index.php', 'user.php']) ? 'menu-open' : ''; ?>">
+                    <a class="nav-link <?= in_array($current_page, ['index.php', 'user.php']) ? 'active' : ''; ?>">
+                        <i class="nav-icon fas fa-home"></i>
                         <p>
                             Dashboard
                             <i class="right fas fa-angle-left"></i>
@@ -114,6 +114,91 @@ function pagePath($pageTitle, $breadcrumb)
                             <a href="./" class="nav-link <?= ($current_page === 'index.php') ? 'active' : ''; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Dashboard</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./user.php" class="nav-link <?= ($current_page === 'user.php') ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>User</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+
+                <li class="nav-item has-treeview <?= in_array($current_page, ['lesson.php', 'topics.php']) ? 'menu-open' : ''; ?>">
+                    <a class="nav-link <?= in_array($current_page, ['lesson.php', 'topics.php']) ? 'active' : ''; ?>">
+                        <i class="nav-icon fas fa-graduation-cap"></i>
+                        <p>
+                            Topics & Lesson
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./topics.php" class="nav-link <?= ($current_page === 'topics.php') ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Topics</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./lesson.php" class="nav-link <?= ($current_page === 'lesson.php') ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Lesson</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview <?= in_array($current_page, ['test.php', 'true_false.php', 'dropdown.php', 'fill_in_the_blank.php', 'matching.php']) ? 'menu-open' : ''; ?>">
+                    <a class="nav-link <?= in_array($current_page, ['test.php', 'true_false.php', 'dropdown.php', 'fill_in_the_blank.php', 'matching.php']) ? 'active' : ''; ?>">
+                        <i class="nav-icon fas fa-check-circle"></i>
+                        <p>
+                            Worksheet
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./test.php" class="nav-link <?= ($current_page === 'test.php') ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Test</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./true_false.php" class="nav-link <?= ($current_page === 'true_false.php') ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>True False</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./dropdown.php" class="nav-link <?= ($current_page === 'dropdown.php') ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Dropdown</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./fill_in_the_blank.php" class="nav-link <?= ($current_page === 'fill_in_the_blank.php') ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Fill In The Blank</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./matching.php" class="nav-link <?= ($current_page === 'matching.php') ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Matching</p>
                             </a>
                         </li>
                     </ul>
