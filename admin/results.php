@@ -99,7 +99,7 @@ if ($lesson_id > 0) {
                                                                 echo "0%";
                                                             } else {
                                                                 $percentage = ($result['answered_questions'] / $result['total_questions']) * 100;
-                                                                echo $percentage . "%";
+                                                                echo number_format($percentage, 2) . "%";
                                                             }
                                                             ?>
                                                         </td>

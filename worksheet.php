@@ -85,7 +85,7 @@ if (isset($_GET['lessonid'])) {
 
                 Swal.fire({
                     title: "Quiz Result",
-                    text: "You answered " + correctAnswersCount + " out of " + totalQuestions + " questions correctly. Your score is " + percentage + "%",
+                    text: "You answered " + correctAnswersCount + " out of " + totalQuestions + " questions correctly. Your score is " + percentage.toFixed(2) + "%",
                     icon: "success",
                     confirmButtonText: "OK",
                     allowOutsideClick: false,
