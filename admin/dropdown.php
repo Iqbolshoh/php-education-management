@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Foydalanuvchi tizimga kirganligini tekshirish
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     header("Location: ./login/");
     exit;
@@ -10,19 +9,15 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
 include './config.php';
 $query = new Database();
 
-// O'quv darsini olish
 $lessonid = isset($_GET['lessonid']) ? intval($_GET['lessonid']) : null;
 
-// Darslar ro'yxatini olish
 $lessons = $query->select('lessons', '*');
 
-// Agar dars id mavjud bo'lsa, dropdown ma'lumotlarini olish
 $dropdowns = [];
 if ($lessonid) {
     $dropdowns = $query->select('dropdown', '*', "lesson_id = '$lessonid'");
 }
 
-// POST so'rovlari bilan ishlash
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['add_dropdown'])) {
         $question = htmlspecialchars($_POST['question']);

@@ -7,7 +7,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
-include './config.php';
+include 'config.php';
 $query = new Database();
 
 $user_id = $_SESSION['user_id'];
@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ], "id = $user_id");
     }
 
-    header("Location: ./user.php?success=1");
+    header("Location: " . $_SERVER['HTTP_REFERER']);
     exit;
 }
 ?>
