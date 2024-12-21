@@ -79,6 +79,15 @@ CREATE TABLE IF NOT EXISTS matching (
     FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS results (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    lesson_id INT,
+    participant_name VARCHAR(255) NOT NULL,
+    total_questions INT NOT NULL,
+    answered_questions INT NOT NULL,
+    FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE
+);
+
 INSERT INTO
     users (
         first_name,

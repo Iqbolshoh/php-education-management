@@ -156,7 +156,7 @@ function pagePath($pageTitle, $breadcrumb)
 
                 <li class="nav-item has-treeview <?= in_array($current_page, ['test.php', 'true_false.php', 'dropdown.php', 'fill_in_the_blank.php', 'matching.php']) ? 'menu-open' : ''; ?>">
                     <a class="nav-link <?= in_array($current_page, ['test.php', 'true_false.php', 'dropdown.php', 'fill_in_the_blank.php', 'matching.php']) ? 'active' : ''; ?>">
-                        <i class="nav-icon fas fa-check-circle"></i>
+                        <i class="nav-icon fas fa-tasks"></i>
                         <p>
                             Worksheet
                             <i class="right fas fa-angle-left"></i>
@@ -199,6 +199,24 @@ function pagePath($pageTitle, $breadcrumb)
                             <a href="./matching.php" class="nav-link <?= ($current_page === 'matching.php') ? 'active' : ''; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Matching</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="nav-item has-treeview <?= in_array($current_page, ['results.php']) ? 'menu-open' : ''; ?>">
+                    <a class="nav-link <?= in_array($current_page, ['results.php']) ? 'active' : ''; ?>">
+                        <i class="nav-icon fas fa-medal"></i>
+                        <p>
+                            View Results
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./results.php" class="nav-link <?= ($current_page === 'results.php') ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Results</p>
                             </a>
                         </li>
                     </ul>

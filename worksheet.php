@@ -2,8 +2,10 @@
 include 'config.php';
 $query = new Database();
 
+
 if (isset($_GET['lessonid'])) {
     $lessonid = intval($_GET['lessonid']);
+    $participant_name = $_GET['participant_name'] ?? null;
 
     if (!$lessonid) {
         include '404.php';
@@ -66,8 +68,37 @@ if (isset($_GET['lessonid'])) {
         }
 
         $totalQuestions = count($tests) + count($tru_falses) + count($dropdowns) + count($fill_in_the_blanks) + count($matchings);
-    }
+        $percentage = ($correctAnswersCount / $totalQuestions) * 100;
+
+        $query->insert('results', [
+            'lesson_id' => $lessonid,
+            'participant_name' => $participant_name,
+            'answered_questions' => $correctAnswersCount,
+            'total_questions' => $totalQuestions
+        ]);
 ?>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var correctAnswersCount = <?php echo $correctAnswersCount; ?>;
+                var totalQuestions = <?php echo $totalQuestions; ?>;
+                var percentage = <?php echo $percentage; ?>;
+
+                Swal.fire({
+                    title: "Quiz Result",
+                    text: "You answered " + correctAnswersCount + " out of " + totalQuestions + " questions correctly. Your score is " + percentage + "%",
+                    icon: "success",
+                    confirmButtonText: "OK",
+                    allowOutsideClick: false,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = document.referrer;
+                    }
+                });
+            });
+        </script>
+    <?php
+    }
+    ?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -75,8 +106,11 @@ if (isset($_GET['lessonid'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./style.css">
         <title>Task for: <?= $lesson[0]['title'] ?></title>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
+
     <style>
         .title {
             color: #6c5ce7;
@@ -233,27 +267,6 @@ if (isset($_GET['lessonid'])) {
             border-radius: 5px;
             cursor: pointer;
         }
-
-        .result {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #4CAF50;
-            text-align: center;
-            width: calc(100% - 40px);
-            max-width: 900px;
-            margin: 20px auto;
-            background-color: #f0f8ff;
-            padding: 10px;
-            box-sizing: border-box;
-            border-radius: 8px;
-            border: 2px solid #4CAF50;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease;
-        }
-
-        .result:hover {
-            transform: scale(1.05);
-        }
     </style>
 
     <body>
@@ -261,129 +274,161 @@ if (isset($_GET['lessonid'])) {
         <br>
         <br>
         <br>
-        <?php if ($_SERVER['REQUEST_METHOD'] == 'POST') { ?>
-            <?= "<h2 class='result'>Result: You answered $correctAnswersCount questions correctly out of $totalQuestions questions</h2>" ?>
-        <?php }; ?>
+
         <h1 class="title">Task for: <?= $lesson[0]['title'] ?></h1>
 
-        <?php if (!empty($tests) || !empty($tru_falses) || !empty($dropdowns) || !empty($fill_in_the_blanks) || !empty($matchings)) : ?>
-            <form method="post">
+        <?php if ($participant_name) : ?>
 
-                <?php if (!empty($tests)) : ?>
-                    <h3 class="title_h3">Test Questions</h3>
-                    <div class="task_item">
-                        <?php foreach ($tests as $index => $test) :
-                            $testid = $test['id'];
-                            $options = $query->select('test_options', '*', "test_id = $testid");
-                            shuffle($options);
-                        ?>
-                            <label for="test_question_<?= $testid; ?>">
-                                <?= ($index + 1) . '. ' . htmlspecialchars($test['question']); ?>
-                            </label><br>
+            <?php if (!empty($tests) || !empty($tru_falses) || !empty($dropdowns) || !empty($fill_in_the_blanks) || !empty($matchings)) : ?>
+                <form method="post">
 
-                            <div class="options">
-                                <?php foreach ($options as $option) : ?>
-                                    <label>
-                                        <input type="radio" name="test_answer_<?= $testid; ?>" id="test_answer_<?= $option['id']; ?>" value="<?= htmlspecialchars($option['id']); ?>"><?= htmlspecialchars($option['option_text']); ?>
+                    <?php if (!empty($tests)) : ?>
+                        <h3 class="title_h3">Test Questions</h3>
+                        <div class="task_item">
+                            <?php foreach ($tests as $index => $test) :
+                                $testid = $test['id'];
+                                $options = $query->select('test_options', '*', "test_id = $testid");
+                                shuffle($options);
+                            ?>
+                                <label for="test_question_<?= $testid; ?>">
+                                    <?= ($index + 1) . '. ' . htmlspecialchars($test['question']); ?>
+                                </label><br>
+
+                                <div class="options">
+                                    <?php foreach ($options as $option) : ?>
+                                        <label>
+                                            <input type="radio" name="test_answer_<?= $testid; ?>" id="test_answer_<?= $option['id']; ?>" value="<?= htmlspecialchars($option['id']); ?>"><?= htmlspecialchars($option['option_text']); ?>
+                                        </label><br>
+                                    <?php endforeach; ?>
+                                </div>
+                                <hr>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($tru_falses)) : ?>
+                        <h3 class="title_h3">True/False Questions</h3>
+                        <div class="task_item">
+                            <?php foreach ($tru_falses as $index => $tru_false) : ?>
+                                <label for="tru_false_statement_<?= $tru_false['id']; ?>">
+                                    <?= ($index + 1) . '. ' . htmlspecialchars($tru_false['statement']); ?>
+                                </label><br>
+                                <div class="options">
+                                    <label for="tru_false_answer_<?= $tru_false['id']; ?>_true">
+                                        <input type="radio" id="tru_false_answer_<?= $tru_false['id']; ?>_true" name="tru_false_answer_<?= $tru_false['id']; ?>" value="1"> True
                                     </label><br>
-                                <?php endforeach; ?>
-                            </div>
-                            <hr>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+                                    <label for="tru_false_answer_<?= $tru_false['id']; ?>_false">
+                                        <input type="radio" id="tru_false_answer_<?= $tru_false['id']; ?>_false" name="tru_false_answer_<?= $tru_false['id']; ?>" value="0"> False
+                                    </label><br>
+                                </div>
+                                <hr>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
 
-                <?php if (!empty($tru_falses)) : ?>
-                    <h3 class="title_h3">True/False Questions</h3>
-                    <div class="task_item">
-                        <?php foreach ($tru_falses as $index => $tru_false) : ?>
-                            <label for="tru_false_statement_<?= $tru_false['id']; ?>">
-                                <?= ($index + 1) . '. ' . htmlspecialchars($tru_false['statement']); ?>
-                            </label><br>
-                            <div class="options">
-                                <label for="tru_false_answer_<?= $tru_false['id']; ?>_true">
-                                    <input type="radio" id="tru_false_answer_<?= $tru_false['id']; ?>_true" name="tru_false_answer_<?= $tru_false['id']; ?>" value="1"> True
+                    <?php if (!empty($dropdowns)) : ?>
+                        <h3 class="title_h3">Dropdown Question</h3>
+                        <div class="task_item">
+                            <?php foreach ($dropdowns as $index => $dropdown) : ?>
+                                <?php $dropdownOptions[$index] = $dropdown['correct_answer']; ?>
+                            <?php endforeach; ?>
+
+                            <?php foreach ($dropdowns as $index => $dropdown) : ?>
+                                <?php shuffle($dropdownOptions); ?>
+                                <label for="dropdown_question_<?= $dropdown['id']; ?>"><?= ($index + 1) . '. ' . htmlspecialchars($dropdown['question']); ?></label><br>
+                                <select name="dropdown_answer_<?= $dropdown['id']; ?>" id="dropdown_question_<?= $dropdown['id']; ?>" class="dropdown">
+                                    <option value="" disabled selected>-- Select Section --</option>
+                                    <?php foreach ($dropdownOptions as $dropdownOption): ?>
+                                        <option value="<?= $dropdownOption ?>"><?= $dropdownOption ?></option>
+                                    <?php endforeach; ?>
+                                </select><br>
+                                <hr>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (!empty($fill_in_the_blanks)) : ?>
+                        <h3 class="title_h3">Fill in the Blank Questions</h3>
+                        <div class="task_item">
+                            <div id="words-container" class="words"></div>
+                            <?php foreach ($fill_in_the_blanks as $index => $blank) : ?>
+                                <label for="fill_in_the_blank_<?= $blank['id']; ?>">
+                                    <?= ($index + 1) . '. ' . htmlspecialchars($blank['sentence']); ?>
                                 </label><br>
-                                <label for="tru_false_answer_<?= $tru_false['id']; ?>_false">
-                                    <input type="radio" id="tru_false_answer_<?= $tru_false['id']; ?>_false" name="tru_false_answer_<?= $tru_false['id']; ?>" value="0"> False
-                                </label><br>
-                            </div>
-                            <hr>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
+                                <input type="text" name="fill_in_the_blank_answer_<?= $blank['id']; ?>" placeholder="Enter your answer"><br>
+                                <hr>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
 
-                <?php if (!empty($dropdowns)) : ?>
-                    <h3 class="title_h3">Dropdown Question</h3>
-                    <div class="task_item">
-                        <?php foreach ($dropdowns as $index => $dropdown) : ?>
-                            <?php $dropdownOptions[$index] = $dropdown['correct_answer']; ?>
-                        <?php endforeach; ?>
-
-                        <?php foreach ($dropdowns as $index => $dropdown) : ?>
-                            <?php shuffle($dropdownOptions); ?>
-                            <label for="dropdown_question_<?= $dropdown['id']; ?>"><?= ($index + 1) . '. ' . htmlspecialchars($dropdown['question']); ?></label><br>
-                            <select name="dropdown_answer_<?= $dropdown['id']; ?>" id="dropdown_question_<?= $dropdown['id']; ?>" class="dropdown">
-                                <option value="" disabled selected>-- Select Section --</option>
-                                <?php foreach ($dropdownOptions as $dropdownOption): ?>
-                                    <option value="<?= $dropdownOption ?>"><?= $dropdownOption ?></option>
-                                <?php endforeach; ?>
-                            </select><br>
-                            <hr>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
-
-                <?php if (!empty($fill_in_the_blanks)) : ?>
-                    <h3 class="title_h3">Fill in the Blank Questions</h3>
-                    <div class="task_item">
-                        <div id="words-container" class="words"></div>
-                        <?php foreach ($fill_in_the_blanks as $index => $blank) : ?>
-                            <label for="fill_in_the_blank_<?= $blank['id']; ?>">
-                                <?= ($index + 1) . '. ' . htmlspecialchars($blank['sentence']); ?>
-                            </label><br>
-                            <input type="text" name="fill_in_the_blank_answer_<?= $blank['id']; ?>" placeholder="Enter your answer"><br>
-                            <hr>
-                        <?php endforeach; ?>
-                    </div>
-                <?php endif; ?>
-
-                <?php if (!empty($matchings)) : ?>
-                    <?php foreach ($matchings as $index => $matching) : ?>
-                        <?php $matchingOptions[$index] = $matching['right_side']; ?>
-                    <?php endforeach; ?>
-
-                    <h3 class="title_h3">Matching Questions</h3>
-                    <div class="task_item">
+                    <?php if (!empty($matchings)) : ?>
                         <?php foreach ($matchings as $index => $matching) : ?>
-                            <?php shuffle($matchingOptions); ?>
-                            <div class="matching-question">
-                                <div class="left-side">
-                                    <label for="matching_<?= $matching['id']; ?>"><?= ($index + 1) . '. ' . htmlspecialchars($matching['left_side']); ?></label>
-                                </div>
-
-                                <div class="right-side">
-                                    <select name="matching_answer_<?= $matching['id']; ?>" id="matching_<?= $matching['id']; ?>" class="matching-dropdown">
-                                        <option value="" disabled selected>-- Select Section --</option>
-                                        <?php foreach ($matchingOptions as $matchingOption): ?>
-                                            <option value="<?= htmlspecialchars($matchingOption); ?>"><?= htmlspecialchars($matchingOption); ?></option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                            </div>
-                            <hr>
+                            <?php $matchingOptions[$index] = $matching['right_side']; ?>
                         <?php endforeach; ?>
-                    </div>
+
+                        <h3 class="title_h3">Matching Questions</h3>
+                        <div class="task_item">
+                            <?php foreach ($matchings as $index => $matching) : ?>
+                                <?php shuffle($matchingOptions); ?>
+                                <div class="matching-question">
+                                    <div class="left-side">
+                                        <label for="matching_<?= $matching['id']; ?>"><?= ($index + 1) . '. ' . htmlspecialchars($matching['left_side']); ?></label>
+                                    </div>
+
+                                    <div class="right-side">
+                                        <select name="matching_answer_<?= $matching['id']; ?>" id="matching_<?= $matching['id']; ?>" class="matching-dropdown">
+                                            <option value="" disabled selected>-- Select Section --</option>
+                                            <?php foreach ($matchingOptions as $matchingOption): ?>
+                                                <option value="<?= htmlspecialchars($matchingOption); ?>"><?= htmlspecialchars($matchingOption); ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <hr>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
                 <?php endif; ?>
 
 
                 <input type="submit" value="Submit" class="submit-btn">
-            </form>
-        <?php endif; ?>
+                </form>
+            <?php else: ?>
 
-        <br><br>
+                <div style="min-height: 80vh"></div>
 
-        <?php include 'includes/footer.php'; ?>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                        Swal.fire({
+                            title: "Enter your name",
+                            input: "text",
+                            inputAttributes: {
+                                autocapitalize: "off",
+                                maxlength: 50,
+                                pattern: "^[a-zA-Z' ]+$",
+                                title: "Only one word is allowed!"
+                            },
+                            inputValidator: (value) => {
+                                if (!value || !/^[a-zA-Z' ]+$/.test(value)) {
+                                    return "Please enter a valid name (one word only)!";
+                                }
+                            },
+                            showCancelButton: false,
+                            confirmButtonText: "Submit",
+                            allowOutsideClick: false,
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                const participantName = result.value;
+                                window.location.href = window.location.href + "&participant_name=" + encodeURIComponent(participantName);
+                            }
+                        });
+                    });
+                </script>
+            <?php endif; ?>
+
+            <br><br>
+
+            <?php include 'includes/footer.php'; ?>
     </body>
 
     <script>
