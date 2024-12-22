@@ -142,7 +142,7 @@ if (isset($_GET['delete_id'])) {
                                 <input type="hidden" name="blank_id" value="<?= $edit_blank['id'] ?? '' ?>">
                                 <div class="form-group">
                                     <label for="sentence">Sentence with Blank</label>
-                                    <textarea name="sentence" id="sentence" class="form-control" rows="2" placeholder="Enter the sentence with a blank" required><?= $edit_blank['sentence'] ?? '' ?></textarea>
+                                    <textarea name="sentence" id="sentence" class="form-control" rows="4" placeholder="Enter the sentence with a blank" required><?= $edit_blank['sentence'] ?? '' ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="correct_answer">Correct Answer</label>
@@ -170,7 +170,9 @@ if (isset($_GET['delete_id'])) {
                                         <?php foreach ($blanks as $index => $blank): ?>
                                             <tr>
                                                 <td><?= $index + 1 ?></td>
-                                                <td><?= $blank['sentence'] ?></td>
+                                                <td>
+                                                    <p style="white-space: pre-wrap;"><?= $blank['sentence'] ?></p>
+                                                </td>
                                                 <td>
                                                     <a href="?lessonid=<?= $lessonid ?>&edit_blank_id=<?= $blank['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
                                                     <a href="?lessonid=<?= $lessonid ?>&delete_id=<?= $blank['id'] ?>" class="btn btn-danger btn-sm">Delete</a>

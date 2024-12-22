@@ -181,13 +181,13 @@ if (isset($_GET['lessonid'])) {
                 <?php if ($item['type'] == 'content'): ?>
                     <div class="lesson-content">
                         <h2><?= $item['title'] ?></h2>
-                        <p style="white-space: pre-wrap;">&emsp;<?= $item['description'] ?></p>
+                        <p style="white-space: pre-wrap;"><?= $item['description'] ?></p>
                     </div>
                 <?php elseif ($item['type'] == 'video'): ?>
                     <div class="video-wrapper">
                         <h2 class="video-title"><?= $item['title'] ?></h2>
                         <iframe src="https://youtube.com/embed/<?= $item['link'] ?>" title="<?= $item['title'] ?>"></iframe>
-                        <p style="white-space: pre-wrap;">&emsp;<?= $item['description'] ?></p>
+                        <p style="white-space: pre-wrap;"><?= $item['description'] ?></p>
                     </div>
 
                     <br>

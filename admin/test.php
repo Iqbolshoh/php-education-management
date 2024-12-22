@@ -160,7 +160,7 @@ if (isset($_GET['delete_id'])) {
                                 <input type="hidden" name="test_id" value="<?= $edit_test['id'] ?? '' ?>">
                                 <div class="form-group">
                                     <label for="question">Test Question</label>
-                                    <textarea name="question" id="question" class="form-control" rows="2" placeholder="Enter the question" required><?= $edit_test['question'] ?? '' ?></textarea>
+                                    <textarea name="question" id="question" class="form-control" rows="4" placeholder="Enter the question" required><?= $edit_test['question'] ?? '' ?></textarea>
                                 </div>
 
                                 <div id="options-container">
@@ -204,7 +204,9 @@ if (isset($_GET['delete_id'])) {
                                         <?php foreach ($tests as $index => $test): ?>
                                             <tr>
                                                 <td><?= $index + 1 ?></td>
-                                                <td><?= $test['question'] ?></td>
+                                                <td>
+                                                    <p style="white-space: pre-wrap;"><?= $test['question'] ?></p>
+                                                </td>
                                                 <td>
                                                     <a href="?lessonid=<?= $lessonid ?>&edit_test_id=<?= $test['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
                                                     <a href="?lessonid=<?= $lessonid ?>&delete_id=<?= $test['id'] ?>" class="btn btn-danger btn-sm">Delete</a>

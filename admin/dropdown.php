@@ -121,7 +121,7 @@ if (isset($_GET['delete_id'])) {
                                         <input type="hidden" name="lesson_id" value="<?= $lessonid ?>">
                                         <div class="form-group">
                                             <label>New Question:</label>
-                                            <input type="text" name="question" class="form-control" required>
+                                            <textarea name="question" class="form-control" rows="4" placeholder="Enter the question" required></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label>Correct Answer:</label>
@@ -137,7 +137,7 @@ if (isset($_GET['delete_id'])) {
                                             <input type="hidden" name="id[<?= $dropdown['id'] ?>]" value="<?= $dropdown['id'] ?>">
                                             <div class="form-group">
                                                 <label>Question:</label>
-                                                <input type="text" name="question[<?= $dropdown['id'] ?>]" value="<?= $dropdown['question'] ?>" class="form-control">
+                                                <textarea name="question[<?= $dropdown['id'] ?>]" class="form-control" rows="4" placeholder="Enter the question" required><?= $dropdown['question'] ?></textarea>
                                             </div>
                                             <div class="form-group">
                                                 <label>Correct Answer:</label>

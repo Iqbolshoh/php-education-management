@@ -291,13 +291,13 @@ if (isset($_GET['lessonid'])) {
                                 shuffle($options);
                             ?>
                                 <label for="test_question_<?= $testid; ?>">
-                                    <?= ($index + 1) . '. ' . htmlspecialchars($test['question']); ?>
+                                    <p style="white-space: pre-wrap;"><?= ($index + 1) . ')   ' . $test['question'] ?></p>
                                 </label><br>
 
                                 <div class="options">
                                     <?php foreach ($options as $option) : ?>
                                         <label>
-                                            <input type="radio" name="test_answer_<?= $testid; ?>" id="test_answer_<?= $option['id']; ?>" value="<?= htmlspecialchars($option['id']); ?>"><?= htmlspecialchars($option['option_text']); ?>
+                                            <input type="radio" name="test_answer_<?= $testid; ?>" id="test_answer_<?= $option['id']; ?>" value="<?= $option['id'] ?>"><?= $option['option_text'] ?>
                                         </label><br>
                                     <?php endforeach; ?>
                                 </div>
@@ -311,7 +311,7 @@ if (isset($_GET['lessonid'])) {
                         <div class="task_item">
                             <?php foreach ($tru_falses as $index => $tru_false) : ?>
                                 <label for="tru_false_statement_<?= $tru_false['id']; ?>">
-                                    <?= ($index + 1) . '. ' . htmlspecialchars($tru_false['statement']); ?>
+                                    <p style="white-space: pre-wrap;"> <?= ($index + 1) . ')   ' . $tru_false['statement'] ?></p>
                                 </label><br>
                                 <div class="options">
                                     <label for="tru_false_answer_<?= $tru_false['id']; ?>_true">
@@ -335,7 +335,9 @@ if (isset($_GET['lessonid'])) {
 
                             <?php foreach ($dropdowns as $index => $dropdown) : ?>
                                 <?php shuffle($dropdownOptions); ?>
-                                <label for="dropdown_question_<?= $dropdown['id']; ?>"><?= ($index + 1) . '. ' . $dropdown['question'] ?></label><br>
+                                <label for="dropdown_question_<?= $dropdown['id']; ?>">
+                                    <p style="white-space: pre-wrap;"><?= ($index + 1) . ')   ' . $dropdown['question'] ?></p>
+                                </label><br>
                                 <select name="dropdown_answer_<?= $dropdown['id']; ?>" id="dropdown_question_<?= $dropdown['id']; ?>" class="dropdown">
                                     <option value="" disabled selected>-- Select Section --</option>
                                     <?php foreach ($dropdownOptions as $dropdownOption): ?>
@@ -353,7 +355,7 @@ if (isset($_GET['lessonid'])) {
                             <div id="words-container" class="words"></div>
                             <?php foreach ($fill_in_the_blanks as $index => $blank) : ?>
                                 <label for="fill_in_the_blank_<?= $blank['id']; ?>">
-                                    <?= ($index + 1) . '. ' . $blank['sentence'] ?>
+                                    <p style="white-space: pre-wrap;"><?= ($index + 1) . ')   ' . $blank['sentence'] ?> </p>
                                 </label><br>
                                 <input type="text" name="fill_in_the_blank_answer_<?= $blank['id']; ?>" placeholder="Enter your answer"><br>
                                 <hr>
@@ -372,7 +374,9 @@ if (isset($_GET['lessonid'])) {
                                 <?php shuffle($matchingOptions); ?>
                                 <div class="matching-question">
                                     <div class="left-side">
-                                        <label for="matching_<?= $matching['id']; ?>"><?= ($index + 1) . '. ' . $matching['left_side'] ?></label>
+                                        <label for="matching_<?= $matching['id']; ?>">
+                                            <p style="white-space: pre-wrap;"><?= ($index + 1) . ')   '  . $matching['left_side'] ?></p>
+                                        </label>
                                     </div>
 
                                     <div class="right-side">

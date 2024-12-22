@@ -226,7 +226,7 @@ $lessons = $query->select('lesson_items', '*', "lesson_id = '$lessonid' ORDER BY
 
                                     <div class="form-group">
                                         <label for="description">Description</label>
-                                        <textarea name="description" class="form-control" required></textarea>
+                                        <textarea name="description" class="form-control" required rows="5"></textarea>
                                     </div>
 
                                     <div class="form-group">
@@ -262,12 +262,12 @@ $lessons = $query->select('lesson_items', '*', "lesson_id = '$lessonid' ORDER BY
                                                 <div class="form-group">
                                                     <p class="lesson-item-title"><strong>Item_<?= $index + 1 ?></strong></p>
                                                     <label for="title[<?php echo $lesson['id']; ?>]">Title</label>
-                                                    <input type="text" name="title[<?php echo $lesson['id']; ?>]" value="<?php echo  ($lesson['title']); ?>" class="form-control" required>
+                                                    <input type="text" name="title[<?php echo $lesson['id']; ?>]" value="<?php echo ($lesson['title']); ?>" class="form-control" required>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="description[<?php echo $lesson['id']; ?>]">Description</label>
-                                                    <textarea name="description[<?php echo $lesson['id']; ?>]" class="form-control" required><?php echo  ($lesson['description']); ?></textarea>
+                                                    <textarea name="description[<?php echo $lesson['id']; ?>]" class="form-control" required rows="5"><?php echo ($lesson['description']); ?></textarea>
                                                 </div>
 
                                                 <div class="form-group">
@@ -280,7 +280,7 @@ $lessons = $query->select('lesson_items', '*', "lesson_id = '$lessonid' ORDER BY
 
                                                 <div class="form-group video-link" id="link-field-<?php echo $lesson['id']; ?>" style="display: <?php echo ($lesson['type'] == 'video') ? 'block' : 'none'; ?>;">
                                                     <label for="link[<?php echo $lesson['id']; ?>]">Link </label> <span>(youtube.com)</span>
-                                                    <input type="text" name="link[<?php echo $lesson['id']; ?>]" value="<?php echo  ($lesson['link']); ?>" class="form-control" id="link-<?php echo $lesson['id']; ?>" oninput="extractVideoId1(this, <?php echo $lesson['id']; ?>)">
+                                                    <input type="text" name="link[<?php echo $lesson['id']; ?>]" value="<?php echo ($lesson['link']); ?>" class="form-control" id="link-<?php echo $lesson['id']; ?>" oninput="extractVideoId1(this, <?php echo $lesson['id']; ?>)">
                                                 </div>
 
                                                 <div class="form-group">

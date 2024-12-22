@@ -142,11 +142,11 @@ if (isset($_GET['delete_id'])) {
                                 <input type="hidden" name="matching_id" value="<?= $edit_matching['id'] ?? '' ?>">
                                 <div class="form-group">
                                     <label for="left_side">Left Side</label>
-                                    <textarea name="left_side" id="left_side" class="form-control" rows="2" placeholder="Enter left side content" required><?= $edit_matching['left_side'] ?? '' ?></textarea>
+                                    <textarea name="left_side" id="left_side" class="form-control" rows="4" placeholder="Enter left side content" required><?= $edit_matching['left_side'] ?? '' ?></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="right_side">Right Side</label>
-                                    <textarea name="right_side" id="right_side" class="form-control" rows="2" placeholder="Enter right side content" required><?= $edit_matching['right_side'] ?? '' ?></textarea>
+                                    <input type="text" name="right_side" id="right_side" class="form-control" placeholder="Enter right side content" required value="<?= $edit_matching['right_side'] ?? '' ?>">
                                 </div>
 
                                 <div class="form-group mt-4">
@@ -171,7 +171,9 @@ if (isset($_GET['delete_id'])) {
                                         <?php foreach ($matchings as $index => $matching): ?>
                                             <tr>
                                                 <td><?= $index + 1 ?></td>
-                                                <td><?= $matching['left_side'] ?></td>
+                                                <td>
+                                                    <p style="white-space: pre-wrap;"><?= $matching['left_side'] ?></p>
+                                                </td>
                                                 <td><?= $matching['right_side'] ?></td>
                                                 <td>
                                                     <a href="?lessonid=<?= $lessonid ?>&edit_matching_id=<?= $matching['id'] ?>" class="btn btn-warning btn-sm">Edit</a>

@@ -173,7 +173,7 @@ if (isset($_GET['delete_id'])) {
 
                                             <div class="form-group">
                                                 <label for="statement">Question Statement</label>
-                                                <textarea name="statement" id="statement" class="form-control" rows="4" required></textarea>
+                                                <textarea name="statement" id="statement" class="form-control" rows="4" placeholder="Enter the statement" required></textarea>
                                             </div>
 
                                             <div class="form-group">
