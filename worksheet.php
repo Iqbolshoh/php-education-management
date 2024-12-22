@@ -25,6 +25,12 @@ if (isset($_GET['lessonid'])) {
     $fill_in_the_blanks = $query->select('fill_in_the_blank', '*', "lesson_id = $lessonid");
     $matchings = $query->select('matching', '*', "lesson_id = $lessonid");
 
+    shuffle($tests);
+    shuffle($tru_falses);
+    shuffle($dropdowns);
+    shuffle($fill_in_the_blanks);
+    shuffle($matchings);
+
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $correctAnswersCount = 0;
 
