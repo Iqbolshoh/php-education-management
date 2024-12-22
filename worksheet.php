@@ -25,6 +25,11 @@ if (isset($_GET['lessonid'])) {
     $fill_in_the_blanks = $query->select('fill_in_the_blank', '*', "lesson_id = $lessonid");
     $matchings = $query->select('matching', '*', "lesson_id = $lessonid");
 
+    $text_questions = $query->select('questions', '*', "lesson_id = $lessonid");
+    $text_questionid = $text_questions[0]['id'];
+    $text_options = $query->select('answers', '*', "question_id = '$text_questionid'");
+    $text_optionsSelecs = $text_options;
+
     shuffle($tests);
     shuffle($tru_falses);
     shuffle($dropdowns);
@@ -73,7 +78,21 @@ if (isset($_GET['lessonid'])) {
             }
         }
 
-        $totalQuestions = count($tests) + count($tru_falses) + count($dropdowns) + count($fill_in_the_blanks) + count($matchings);
+        $text_correctAnswers = [];
+        foreach ($text_options as $text_option) {
+            $text_correctAnswers[] = $text_option['answer_text'];
+        }
+
+        $text_submittedAnswers = $_POST['answers'] ?? [];
+        $correctAnswersCount = 0;
+
+        foreach ($text_submittedAnswers as $text_index => $text_answer) {
+            if ($text_answer === $text_correctAnswers[$text_index]) {
+                $correctAnswersCount++;
+            }
+        }
+
+        $totalQuestions = count($tests) + count($tru_falses) + count($dropdowns) + count($fill_in_the_blanks) + count($matchings) + count($text_options);
         $percentage = ($correctAnswersCount / $totalQuestions) * 100;
 
         $query->insert('results', [
@@ -113,7 +132,7 @@ if (isset($_GET['lessonid'])) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./style.css">
-        <title>Task for: <?= $lesson[0]['title'] ?></title>
+        <title>WorkSheet | Task for: <?= $lesson[0]['title'] ?></title>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
 
@@ -273,6 +292,40 @@ if (isset($_GET['lessonid'])) {
             border-radius: 5px;
             cursor: pointer;
         }
+
+
+        .question-text {
+            font-size: 1.7rem;
+            margin-bottom: 20px;
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        .answer-option {
+            font-size: 1.7rem;
+            text-align: justify;
+            line-height: 1.6;
+            margin-bottom: 9px;
+        }
+
+        .answer-select {
+            padding: 7px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .answer-select:hover {
+            border-color: #007bff;
+        }
+
+        .answer-select:focus {
+            border-color: #6c5ce7;
+            outline: none;
+        }
     </style>
 
     <body>
@@ -285,7 +338,7 @@ if (isset($_GET['lessonid'])) {
 
         <?php if ($participant_name) : ?>
 
-            <?php if (!empty($tests) || !empty($tru_falses) || !empty($dropdowns) || !empty($fill_in_the_blanks) || !empty($matchings)) : ?>
+            <?php if (!empty($tests) || !empty($tru_falses) || !empty($dropdowns) || !empty($fill_in_the_blanks) || !empty($matchings) || !empty($text_questions)) : ?>
                 <form method="post">
 
                     <?php if (!empty($tests)) : ?>
@@ -358,7 +411,6 @@ if (isset($_GET['lessonid'])) {
                     <?php if (!empty($fill_in_the_blanks)) : ?>
                         <h3 class="title_h3">Fill in the Blank Questions</h3>
                         <div class="task_item">
-                            <div id="words-container" class="words"></div>
                             <?php foreach ($fill_in_the_blanks as $index => $blank) : ?>
                                 <label for="fill_in_the_blank_<?= $blank['id']; ?>">
                                     <p style="white-space: pre-wrap;"><?= ($index + 1) . ')   ' . $blank['sentence'] ?> </p>
@@ -398,7 +450,33 @@ if (isset($_GET['lessonid'])) {
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
+
+                    <?php if (!empty($text_questions)) : ?>
+                        <h3 class="title_h3">Question:</h3>
+                        <p style="white-space: pre-wrap;" class="question-text"><?= $text_questions[0]['question_text'] ?></p>
+                        <div class="answers-container">
+                            <?php foreach ($text_options as $text_index => $text_option) { ?>
+                                <?php shuffle($text_optionsSelecs); ?>
+
+                                <div class="answer-option">
+                                    <label for="answer-<?= $text_index ?>" class="answer-label"><?= $text_index + 1 . ") " ?></label>
+                                    <select name="answers[<?= $text_index ?>]" id="answer-<?= $text_index ?>" class="answer-select">
+                                        <option value="" disabled selected>-- Select Section --</option>
+                                        <?php foreach ($text_optionsSelecs as $text_optionsSelec) { ?>
+                                            <option value="<?= $text_optionsSelec['answer_text'] ?>">
+                                                <?= $text_optionsSelec['answer_text'] ?>
+                                            </option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            <?php } ?>
+                        </div>
+
+                    <?php endif; ?>
+
+
                 <?php endif; ?>
+
 
 
                 <input type="submit" value="Submit" class="submit-btn">
@@ -440,29 +518,6 @@ if (isset($_GET['lessonid'])) {
 
             <?php include 'includes/footer.php'; ?>
     </body>
-
-    <script>
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
-        function renderWords(correctAnswersCount) {
-            const wordsContainer = document.getElementById('words-container');
-            const shuffledWords = shuffleArray([...correctAnswersCount]);
-            wordsContainer.innerHTML = shuffledWords
-                .map(word => `<span class="word">${word}</span>`)
-                .join('');
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const correctAnswersCount = <?= json_encode(array_column($fill_in_the_blanks, 'correct_answer')); ?>;
-            renderWords(correctAnswersCount);
-        });
-    </script>
 
     </html>
 <?php

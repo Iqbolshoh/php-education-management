@@ -88,6 +88,20 @@ CREATE TABLE IF NOT EXISTS results (
     FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE
 );
 
+CREATE TABLE questions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    lesson_id INT,
+    question_text TEXT NOT NULL,
+    FOREIGN KEY (lesson_id) REFERENCES lessons(id) ON DELETE CASCADE
+);
+
+CREATE TABLE answers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    question_id INT,
+    answer_text VARCHAR(255) NOT NULL,
+    FOREIGN KEY (question_id) REFERENCES questions(id)
+);
+
 INSERT INTO
     users (
         first_name,
@@ -138,7 +152,7 @@ VALUES
         1,
         'content',
         'Basic Greetings',
-        'Learn how to greet people and introduce yourself in English. Understand various greetings used in different contexts such as formal, informal, and casual settings. This lesson will introduce common phrases like "How are you?" and "Nice to meet you." You will also explore cultural nuances and appropriate responses, helping you feel confident when initiating conversations in English-speaking environments.',
+        'Learn how to greet people and introduce yourself in English. Understand various greetings used in different contexts such as formal, informal, and casual settings. This lesson will introduce common phrases like " How are you ? " and " Nice to meet you." You will also explore cultural nuances and appropriate responses, helping you feel confident when initiating conversations in English-speaking environments.',
         '',
         3
     ),
@@ -194,7 +208,7 @@ VALUES
         2,
         'video',
         'Idioms and Expressions',
-        'Discover the world of idioms and expressions in this video lesson. Learn the meanings behind common idioms used in everyday conversations, such as "break the ice" and "get cold feet." We will also explore cultural context and how idioms are used by native speakers. You’ll have the chance to practice these idiomatic expressions in your own sentences and understand their significance in informal conversations.',
+        'Discover the world of idioms and expressions in this video lesson. Learn the meanings behind common idioms used in everyday conversations, such as " break the ice " and " get cold feet." We will also explore cultural context and how idioms are used by native speakers. You’ll have the chance to practice these idiomatic expressions in your own sentences and understand their significance in informal conversations.',
         '_neP6775wCY?si=uK0q15aYVrUBiyK7',
         2
     ),
@@ -295,12 +309,12 @@ INSERT INTO
 VALUES
     (
         1,
-        'Select the correct preposition: "I am going ___ the store." ',
+        'Select the correct preposition: " I am going ___ the store." ',
         'to'
     ),
     (
         1,
-        'Choose the correct option: "The cat is ___ the table."',
+        'Choose the correct option: " The cat is ___ the table."',
         'under'
     );
 
@@ -322,3 +336,24 @@ VALUES
     (1, 'Dog', 'Animal'),
     (2, 'Python', 'Programming Language'),
     (3, 'HTML', 'Markup Language');
+
+INSERT INTO
+    questions (lesson_id, question_text)
+VALUES
+    (
+        1,
+        "On 21 January 2023, I bought an Artel 4K Smart TV for $299.95 from your Tashkent Mall branch. I have attached a copy of my receipt for your reference. When I returned home and unpacked the TV, I (1) _____ that it was faulty and could not display 4K content properly. I returned to the Tashkent Mall branch and the sales assistant, who was very unhelpful, told me that you no longer (2) _____ the Artel 4K Smart TV. I explained to the assistant that I didn’t want to incur extra costs for another model, and I would rather (3) _____ a reimbursement for the faulty product. I believe I am (4) _____ to a full refund for this defective product, as it is not functioning as promised. Please contact me (5) _____ the next two weeks to arrange a convenient time for me to return the appliance and collect my refund. I can be (6) _____ at home on the phone number above or at 2461 8032 (7) _____ business hours. I look forward to hearing from you if you wish to (8) _____ this issue further. Yours (9) _____."
+    );
+
+INSERT INTO
+    answers (question_id, answer_text)
+VALUES
+    (1, 'noticed'),
+    (1, 'realized'),
+    (1, 'discovered'),
+    (1, 'observed'),
+    (1, 'found'),
+    (1, 'detected'),
+    (1, 'saw'),
+    (1, 'perceived'),
+    (1, 'recognized')

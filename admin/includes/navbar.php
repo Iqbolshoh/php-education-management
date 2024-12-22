@@ -154,8 +154,8 @@ function pagePath($pageTitle, $breadcrumb)
                     </ul>
                 </li>
 
-                <li class="nav-item has-treeview <?= in_array($current_page, ['test.php', 'true_false.php', 'dropdown.php', 'fill_in_the_blank.php', 'matching.php']) ? 'menu-open' : ''; ?>">
-                    <a class="nav-link <?= in_array($current_page, ['test.php', 'true_false.php', 'dropdown.php', 'fill_in_the_blank.php', 'matching.php']) ? 'active' : ''; ?>">
+                <li class="nav-item has-treeview <?= in_array($current_page, ['test.php', 'true_false.php', 'dropdown.php', 'fill_in_the_blank.php', 'matching.php', 'question.php']) ? 'menu-open' : ''; ?>">
+                    <a class="nav-link <?= in_array($current_page, ['test.php', 'true_false.php', 'dropdown.php', 'fill_in_the_blank.php', 'matching.php', 'question.php']) ? 'active' : ''; ?>">
                         <i class="nav-icon fas fa-tasks"></i>
                         <p>
                             Worksheet
@@ -199,6 +199,14 @@ function pagePath($pageTitle, $breadcrumb)
                             <a href="./matching.php" class="nav-link <?= ($current_page === 'matching.php') ? 'active' : ''; ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Matching</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="./question.php" class="nav-link <?= ($current_page === 'question.php') ? 'active' : ''; ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Question</p>
                             </a>
                         </li>
                     </ul>
