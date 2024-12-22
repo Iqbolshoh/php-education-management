@@ -10,6 +10,13 @@ include './config.php';
 $query = new Database();
 
 $lessonid = isset($_GET['lessonid']) ? intval($_GET['lessonid']) : null;
+
+if ($lessonid !== null) {
+    $lessons_test = $query->select('lessons', '*', "id = '$lessonid'");
+} else {
+    $lessons_test = [];
+}
+
 $edit_blank_id = isset($_GET['edit_blank_id']) ? intval($_GET['edit_blank_id']) : null;
 
 $blanks = [];
@@ -128,7 +135,7 @@ if (isset($_GET['delete_id'])) {
                 <div class="container-fluid">
                     <div class="row">
 
-                        <?php if ($blanks): ?>
+                        <?php if ($lessons_test): ?>
 
                             <form method="POST" class="edit-add">
                                 <h4><?= $edit_blank ? 'Edit Blank' : 'Add New Blank' ?></h4>
@@ -163,7 +170,7 @@ if (isset($_GET['delete_id'])) {
                                         <?php foreach ($blanks as $index => $blank): ?>
                                             <tr>
                                                 <td><?= $index + 1 ?></td>
-                                                <td><?= htmlspecialchars($blank['sentence']) ?></td>
+                                                <td><?= $blank['sentence'] ?></td>
                                                 <td>
                                                     <a href="?lessonid=<?= $lessonid ?>&edit_blank_id=<?= $blank['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
                                                     <a href="?lessonid=<?= $lessonid ?>&delete_id=<?= $blank['id'] ?>" class="btn btn-danger btn-sm">Delete</a>

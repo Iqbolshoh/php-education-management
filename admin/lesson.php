@@ -20,10 +20,9 @@ if ($lessonid !== null) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && !isset($_POST['add_lesson'])) {
     foreach ($_POST['title'] as $id => $title) {
-        $title = htmlspecialchars($title);
-        $description = htmlspecialchars($_POST['description'][$id]);
-        $type = htmlspecialchars($_POST['type'][$id]);
-        $link = htmlspecialchars($_POST['link'][$id]);
+        $description =  $_POST['description'][$id];
+        $type =  $_POST['type'][$id];
+        $link =  $_POST['link'][$id];
         $position = (int)$_POST['position'][$id];
 
         $query->update('lesson_items', [
@@ -49,10 +48,10 @@ if (isset($_GET['delete_id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_lesson'])) {
-    $title = htmlspecialchars($_POST['title']);
-    $description = htmlspecialchars($_POST['description']);
-    $type = htmlspecialchars($_POST['type']);
-    $link = htmlspecialchars($_POST['link']);
+    $title = $_POST['title'];
+    $description =  $_POST['description'];
+    $type =  $_POST['type'];
+    $link =  $_POST['link'];
     $position = (int)$_POST['position'];
 
     $query->insert('lesson_items', [
@@ -263,12 +262,12 @@ $lessons = $query->select('lesson_items', '*', "lesson_id = '$lessonid' ORDER BY
                                                 <div class="form-group">
                                                     <p class="lesson-item-title"><strong>Item_<?= $index + 1 ?></strong></p>
                                                     <label for="title[<?php echo $lesson['id']; ?>]">Title</label>
-                                                    <input type="text" name="title[<?php echo $lesson['id']; ?>]" value="<?php echo htmlspecialchars($lesson['title']); ?>" class="form-control" required>
+                                                    <input type="text" name="title[<?php echo $lesson['id']; ?>]" value="<?php echo  ($lesson['title']); ?>" class="form-control" required>
                                                 </div>
 
                                                 <div class="form-group">
                                                     <label for="description[<?php echo $lesson['id']; ?>]">Description</label>
-                                                    <textarea name="description[<?php echo $lesson['id']; ?>]" class="form-control" required><?php echo htmlspecialchars($lesson['description']); ?></textarea>
+                                                    <textarea name="description[<?php echo $lesson['id']; ?>]" class="form-control" required><?php echo  ($lesson['description']); ?></textarea>
                                                 </div>
 
                                                 <div class="form-group">
@@ -281,7 +280,7 @@ $lessons = $query->select('lesson_items', '*', "lesson_id = '$lessonid' ORDER BY
 
                                                 <div class="form-group video-link" id="link-field-<?php echo $lesson['id']; ?>" style="display: <?php echo ($lesson['type'] == 'video') ? 'block' : 'none'; ?>;">
                                                     <label for="link[<?php echo $lesson['id']; ?>]">Link </label> <span>(youtube.com)</span>
-                                                    <input type="text" name="link[<?php echo $lesson['id']; ?>]" value="<?php echo htmlspecialchars($lesson['link']); ?>" class="form-control" id="link-<?php echo $lesson['id']; ?>" oninput="extractVideoId1(this, <?php echo $lesson['id']; ?>)">
+                                                    <input type="text" name="link[<?php echo $lesson['id']; ?>]" value="<?php echo  ($lesson['link']); ?>" class="form-control" id="link-<?php echo $lesson['id']; ?>" oninput="extractVideoId1(this, <?php echo $lesson['id']; ?>)">
                                                 </div>
 
                                                 <div class="form-group">

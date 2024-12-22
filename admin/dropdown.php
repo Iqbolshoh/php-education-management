@@ -11,7 +11,11 @@ $query = new Database();
 
 $lessonid = isset($_GET['lessonid']) ? intval($_GET['lessonid']) : null;
 
-$lessons = $query->select('lessons', '*');
+if ($lessonid !== null) {
+    $lessons_test = $query->select('lessons', '*', "id = '$lessonid'");
+} else {
+    $lessons_test = [];
+}
 
 $dropdowns = [];
 if ($lessonid) {
@@ -20,8 +24,8 @@ if ($lessonid) {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['add_dropdown'])) {
-        $question = htmlspecialchars($_POST['question']);
-        $correct_answer = htmlspecialchars($_POST['correct_answer']);
+        $question = $_POST['question'];
+        $correct_answer = $_POST['correct_answer'];
         $lesson_id = intval($_POST['lesson_id']);
 
         $query->insert('dropdown', [
@@ -34,8 +38,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['update_dropdown'])) {
         foreach ($_POST['id'] as $id) {
             $id = intval($id);
-            $question = htmlspecialchars($_POST['question'][$id]);
-            $correct_answer = htmlspecialchars($_POST['correct_answer'][$id]);
+            $question = $_POST['question'][$id];
+            $correct_answer = $_POST['correct_answer'][$id];
 
             $query->update('dropdown', [
                 'question' => $question,
@@ -109,7 +113,7 @@ if (isset($_GET['delete_id'])) {
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <?php if ($lessonid && $dropdowns): ?>
+                        <?php if ($lessons_test): ?>
                             <div class="col-12">
                                 <div class="dropdownBox">
                                     <h4>Add Dropdown</h4>

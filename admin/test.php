@@ -10,7 +10,16 @@ include './config.php';
 $query = new Database();
 
 $lessonid = isset($_GET['lessonid']) ? intval($_GET['lessonid']) : null;
+
+if ($lessonid !== null) {
+    $lessons_test = $query->select('lessons', '*', "id = '$lessonid'");
+} else {
+    $lessons_test = [];
+}
+
 $edit_test_id = isset($_GET['edit_test_id']) ? intval($_GET['edit_test_id']) : null;
+
+
 
 $tests = [];
 if ($lessonid !== null) {
@@ -144,7 +153,7 @@ if (isset($_GET['delete_id'])) {
                 <div class="container-fluid">
                     <div class="row">
 
-                        <?php if ($tests): ?>
+                        <?php if ($lessons_test): ?>
 
                             <form method="POST" class="edit-add">
                                 <h4><?= $edit_test ? 'Edit Test' : 'Add New Test' ?></h4>
@@ -159,7 +168,7 @@ if (isset($_GET['delete_id'])) {
                                     <?php if ($edit_test): ?>
                                         <?php foreach ($edit_test_options as $index => $option): ?>
                                             <div class="option-item d-flex align-items-center mb-2">
-                                                <input type="text" name="options[]" class="form-control mr-2" placeholder="Option text" value="<?= htmlspecialchars($option['option_text']) ?>" required>
+                                                <input type="text" name="options[]" class="form-control mr-2" placeholder="Option text" value="<?= $option['option_text'] ?>" required>
                                                 <input type="radio" name="correct_option" value="<?= $index ?>" <?= $option['is_correct'] ? 'checked' : '' ?>> Correct
                                                 <button type="button" class="btn btn-danger btn-sm ml-2 remove-option">Remove</button>
                                             </div>
@@ -195,7 +204,7 @@ if (isset($_GET['delete_id'])) {
                                         <?php foreach ($tests as $index => $test): ?>
                                             <tr>
                                                 <td><?= $index + 1 ?></td>
-                                                <td><?= htmlspecialchars($test['question']) ?></td>
+                                                <td><?= $test['question'] ?></td>
                                                 <td>
                                                     <a href="?lessonid=<?= $lessonid ?>&edit_test_id=<?= $test['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
                                                     <a href="?lessonid=<?= $lessonid ?>&delete_id=<?= $test['id'] ?>" class="btn btn-danger btn-sm">Delete</a>

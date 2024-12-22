@@ -32,7 +32,7 @@ if (isset($_GET['lessonid'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($lesson['title']) ?></title>
+    <title><?= $lesson['title'] ?></title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         .container {
@@ -172,22 +172,22 @@ if (isset($_GET['lessonid'])) {
 
     <div class="container">
         <section class="lesson-section">
-            <h1 class="lesson-title"><?= htmlspecialchars($lesson['title']) ?></h1>
-            <p class="lesson-description"><?= htmlspecialchars($lesson['description']) ?></p>
+            <h1 class="lesson-title"><?= $lesson['title'] ?></h1>
+            <p class="lesson-description"><?= $lesson['description'] ?></p>
 
             <hr>
 
             <?php foreach ($lesson_items as $item): ?>
                 <?php if ($item['type'] == 'content'): ?>
                     <div class="lesson-content">
-                        <h2><?= htmlspecialchars($item['title']) ?></h2>
-                        <p>&emsp;<?= htmlspecialchars($item['description']) ?></p>
+                        <h2><?= $item['title'] ?></h2>
+                        <p style="white-space: pre-wrap;">&emsp;<?= $item['description'] ?></p>
                     </div>
                 <?php elseif ($item['type'] == 'video'): ?>
                     <div class="video-wrapper">
                         <h2 class="video-title"><?= $item['title'] ?></h2>
-                        <iframe src="https://youtube.com/embed/<?= htmlspecialchars($item['link']) ?>" title="<?= htmlspecialchars($item['title']) ?>"></iframe>
-                        <p>&emsp;<?= $item['description'] ?></p>
+                        <iframe src="https://youtube.com/embed/<?= $item['link'] ?>" title="<?= $item['title'] ?>"></iframe>
+                        <p style="white-space: pre-wrap;">&emsp;<?= $item['description'] ?></p>
                     </div>
 
                     <br>

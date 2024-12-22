@@ -154,8 +154,8 @@
 
             foreach ($lessons as $lesson): ?>
                 <div class="lesson-card" style="animation-delay: <?= $delay ?>s;">
-                    <h3><?= htmlspecialchars($lesson['title']) ?></h3>
-                    <p><?= htmlspecialchars($lesson['description']) ?></p>
+                    <h3><?= $lesson['title'] ?></h3>
+                    <p><?= $lesson['description'] ?></p>
                     <a href="lesson_detail.php?lessonid=<?= urlencode($lesson['id']) ?>">
                         <button class="btn">Start Learning</button>
                     </a>

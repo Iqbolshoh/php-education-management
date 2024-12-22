@@ -90,7 +90,7 @@ if ($lesson_id > 0) {
                                                 <?php foreach ($results as $key => $result): ?>
                                                     <tr>
                                                         <td><?= $key + 1 ?></td>
-                                                        <td><?= htmlspecialchars($result['participant_name']) ?></td>
+                                                        <td><?= $result['participant_name'] ?></td>
                                                         <td><?= $result['total_questions'] ?></td>
                                                         <td><?= $result['answered_questions'] ?></td>
                                                         <td>

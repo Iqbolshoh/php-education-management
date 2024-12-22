@@ -335,7 +335,7 @@ if (isset($_GET['lessonid'])) {
 
                             <?php foreach ($dropdowns as $index => $dropdown) : ?>
                                 <?php shuffle($dropdownOptions); ?>
-                                <label for="dropdown_question_<?= $dropdown['id']; ?>"><?= ($index + 1) . '. ' . htmlspecialchars($dropdown['question']); ?></label><br>
+                                <label for="dropdown_question_<?= $dropdown['id']; ?>"><?= ($index + 1) . '. ' . $dropdown['question'] ?></label><br>
                                 <select name="dropdown_answer_<?= $dropdown['id']; ?>" id="dropdown_question_<?= $dropdown['id']; ?>" class="dropdown">
                                     <option value="" disabled selected>-- Select Section --</option>
                                     <?php foreach ($dropdownOptions as $dropdownOption): ?>
@@ -353,7 +353,7 @@ if (isset($_GET['lessonid'])) {
                             <div id="words-container" class="words"></div>
                             <?php foreach ($fill_in_the_blanks as $index => $blank) : ?>
                                 <label for="fill_in_the_blank_<?= $blank['id']; ?>">
-                                    <?= ($index + 1) . '. ' . htmlspecialchars($blank['sentence']); ?>
+                                    <?= ($index + 1) . '. ' . $blank['sentence'] ?>
                                 </label><br>
                                 <input type="text" name="fill_in_the_blank_answer_<?= $blank['id']; ?>" placeholder="Enter your answer"><br>
                                 <hr>
@@ -372,14 +372,14 @@ if (isset($_GET['lessonid'])) {
                                 <?php shuffle($matchingOptions); ?>
                                 <div class="matching-question">
                                     <div class="left-side">
-                                        <label for="matching_<?= $matching['id']; ?>"><?= ($index + 1) . '. ' . htmlspecialchars($matching['left_side']); ?></label>
+                                        <label for="matching_<?= $matching['id']; ?>"><?= ($index + 1) . '. ' . $matching['left_side'] ?></label>
                                     </div>
 
                                     <div class="right-side">
                                         <select name="matching_answer_<?= $matching['id']; ?>" id="matching_<?= $matching['id']; ?>" class="matching-dropdown">
                                             <option value="" disabled selected>-- Select Section --</option>
                                             <?php foreach ($matchingOptions as $matchingOption): ?>
-                                                <option value="<?= htmlspecialchars($matchingOption); ?>"><?= htmlspecialchars($matchingOption); ?></option>
+                                                <option value="<?= $matchingOption ?>"><?= $matchingOption ?></option>
                                             <?php endforeach; ?>
                                         </select>
                                     </div>

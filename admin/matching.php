@@ -10,6 +10,13 @@ include './config.php';
 $query = new Database();
 
 $lessonid = isset($_GET['lessonid']) ? intval($_GET['lessonid']) : null;
+
+if ($lessonid !== null) {
+    $lessons_test = $query->select('lessons', '*', "id = '$lessonid'");
+} else {
+    $lessons_test = [];
+}
+
 $edit_matching_id = isset($_GET['edit_matching_id']) ? intval($_GET['edit_matching_id']) : null;
 
 $matchings = [];
@@ -128,7 +135,7 @@ if (isset($_GET['delete_id'])) {
                 <div class="container-fluid">
                     <div class="row">
 
-                        <?php if ($matchings): ?>
+                        <?php if ($lessons_test): ?>
 
                             <form method="POST" class="edit-add">
                                 <h4><?= $edit_matching ? 'Edit Matching' : 'Add New Matching' ?></h4>
@@ -164,8 +171,8 @@ if (isset($_GET['delete_id'])) {
                                         <?php foreach ($matchings as $index => $matching): ?>
                                             <tr>
                                                 <td><?= $index + 1 ?></td>
-                                                <td><?= htmlspecialchars($matching['left_side']) ?></td>
-                                                <td><?= htmlspecialchars($matching['right_side']) ?></td>
+                                                <td><?= $matching['left_side'] ?></td>
+                                                <td><?= $matching['right_side'] ?></td>
                                                 <td>
                                                     <a href="?lessonid=<?= $lessonid ?>&edit_matching_id=<?= $matching['id'] ?>" class="btn btn-warning btn-sm">Edit</a>
                                                     <a href="?lessonid=<?= $lessonid ?>&delete_id=<?= $matching['id'] ?>" class="btn btn-danger btn-sm">Delete</a>

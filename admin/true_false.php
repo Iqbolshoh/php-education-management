@@ -11,6 +11,12 @@ $query = new Database();
 
 $lessonid = isset($_GET['lessonid']) ? intval($_GET['lessonid']) : null;
 
+if ($lessonid !== null) {
+    $lessons_test = $query->select('lessons', '*', "id = '$lessonid'");
+} else {
+    $lessons_test = [];
+}
+
 $true_false = [];
 if ($lessonid !== null) {
     $true_false = $query->select('tru_false', '*', "lesson_id = '$lessonid'");
@@ -157,7 +163,7 @@ if (isset($_GET['delete_id'])) {
                 <div class="container-fluid">
                     <div class="row">
 
-                        <?php if ($true_false): ?>
+                        <?php if ($lessons_test): ?>
                             <div class="col-12">
                                 <div class="col-12">
                                     <div class="form-container">
