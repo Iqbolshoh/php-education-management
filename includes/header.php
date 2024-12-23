@@ -35,7 +35,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.5rem;
             background-color: #ffffff;
         }
 
@@ -76,16 +76,18 @@
 
         .container {
             width: 100%;
+            min-height: 50vh;
             margin: auto;
-            margin-top: 20px;
-            margin-bottom: 30px;
-            padding: 2rem;
+            margin-top: 27px;
+            margin-bottom: 40px;
+            padding: 1.2rem 2.5rem;
+            border-radius: 11px;
             background-color: #ffffff;
         }
 
         @media (max-width: 768px) {
             header {
-                margin-bottom: 40px;
+                margin-bottom: 70px;
             }
 
             .navbar {

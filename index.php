@@ -9,13 +9,6 @@
 </head>
 
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', sans-serif;
-        background-color: #f7f7f7;
-    }
-
     .hero {
         width: 100%;
         text-align: center;
@@ -116,9 +109,7 @@
 </style>
 
 <body>
-
     <?php include 'includes/header.php' ?>
-
     <div class="container">
 
         <section class="hero">
@@ -137,10 +128,8 @@
                 in your learning journey.</p>
         </section>
 
-    </div>
-
+        </div>
     <?php include 'includes/footer.php' ?>
-
 </body>
 
 </html>

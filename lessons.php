@@ -132,8 +132,7 @@
 </head>
 
 <body>
-    <?php include 'includes/header.php'; ?>
-
+    <?php include 'includes/header.php' ?>
     <div class="container">
 
         <section class="section call-to-action">
@@ -161,14 +160,14 @@
                     </a>
                 </div>
             <?php
-                $delay += 0.1;
+                $delay += 0.3;
             endforeach;
+            
             ?>
-
         </section>
-    </div>
 
-    <?php include 'includes/footer.php'; ?>
+        </div>
+    <?php include 'includes/footer.php' ?>
 </body>
 
 </html>

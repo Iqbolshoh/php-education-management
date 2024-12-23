@@ -4,18 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aboutn US</title>
+    <title>About US</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Poppins', sans-serif;
-        background-color: #f7f7f7;
-    }
-
     .section {
         padding: 5rem 2rem;
         text-align: center;
@@ -95,9 +88,7 @@
 </style>
 
 <body>
-
     <?php include 'includes/header.php' ?>
-
     <div class="container">
 
         <section class="section call-to-action">
@@ -123,10 +114,7 @@
         </section>
 
     </div>
-
     <?php include 'includes/footer.php' ?>
-
-
 </body>
 
 </html>

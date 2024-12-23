@@ -1,10 +1,11 @@
 <footer>
-    <div class="footer-container">
+    <div class="max-with-container">
         <div class="footer-content">
             <div class="footer-logo">
                 <h1>UZWRITER.UZ</h1>
-                <p>Your journey to mastering English starts here.</p>
+                <p>Start learning English.</p>
             </div>
+
             <div class="footer-links">
                 <h3>Quick Links</h3>
                 <ul>
@@ -24,8 +25,16 @@
                 </ul>
             </div>
         </div>
+
         <div class="footer-bottom">
-            <p>&copy; 2024 UZWRITER.UZ. All Rights Reserved.</p>
+            <p>&copy; 2024 UZWRITER.UZ. All Rights Reserved.</p><br>
+        </div>
+
+        <hr><br>
+
+        <div class="footer-b">
+            <h2>Developer: <a href="https://iqbolshoh.uz/">Iqbolshoh dev</a></h2><br>
+            <p>Need programming services? Web development and more!</p>
         </div>
     </div>
 </footer>
@@ -40,19 +49,11 @@
         width: 100%;
     }
 
-    .footer-container {
-        width: 80%;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        min-height: 150px;
-    }
-
     .footer-content {
         display: flex;
         justify-content: space-between;
         width: 100%;
+        padding: 1.2rem 2.5rem;
         flex-wrap: wrap;
         margin-bottom: 2rem;
     }
@@ -67,6 +68,24 @@
         font-size: 1.4rem;
         opacity: 0.8;
         margin-bottom: 2rem;
+    }
+
+    .footer-b {
+        text-align: center;
+    }
+
+    .footer-b h2 {
+        font-size: 1.7rem;
+        font-weight: 600;
+    }
+
+    .footer-b h2 a {
+        color: white;
+    }
+
+    .footer-b p {
+        font-size: 1.4rem;
+        opacity: 0.9;
     }
 
     .footer-links,
@@ -109,10 +128,8 @@
 
     .footer-bottom {
         text-align: center;
-        margin-top: 2rem;
         font-size: 1.2rem;
-        font-weight: 400;
-        opacity: 0.8;
+        color: white;
     }
 
     @media (max-width: 768px) {

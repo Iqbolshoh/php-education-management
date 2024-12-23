@@ -18,13 +18,15 @@ if (isset($_COOKIE['username']) && isset($_COOKIE['session_token'])) {
         session_start();
     }
 
-    $result = $query->select('users', 'id', 'username', $_COOKIE['username'])[0];
+    $result = $query->select('users', '*', 'username', $_COOKIE['username'])[0];
 
     $_SESSION['loggedin'] = true;
     $_SESSION['username'] = $_COOKIE['username'];
     $_SESSION['user_id'] = $result['id'];
     $_SESSION['first_name'] = $result['first_name'];
     $_SESSION['last_name'] = $result['last_name'];
+
+    print_r($result);
 
     header("Location: ../");
     exit;
@@ -45,8 +47,7 @@ if (isset($_POST['submit'])) {
         $_SESSION['last_name'] = $user['last_name'];
 
         setcookie('username', $username, time() + (86400 * 30), "/", "", true, true);
-        setcookie('session_token', session_id(), time() + (86400 * 30), "/", "", true, true);
-
+        setcookie('session_token', session_id(), time() + (86400 * 30), "/", "", true, true)
 ?>
         <script>
             window.onload = function() {

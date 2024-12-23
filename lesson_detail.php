@@ -36,13 +36,13 @@ if (isset($_GET['lessonid'])) {
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         .container {
-            max-width: 900px;
+            max-width: 9000px;
             margin: 20px auto;
             padding: 30px;
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            animation: slideUpFade 1s ease forwards;
+            animation: fadeInUp 1s ease-out forwards;
         }
 
         .lesson-title {
@@ -119,10 +119,19 @@ if (isset($_GET['lessonid'])) {
             margin: 40px 0;
         }
 
-        @keyframes fadeIn {
+        .lesson-title,
+        .lesson-description,
+        hr,
+        #Teppa {
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
             0% {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(50px);
             }
 
             100% {
@@ -168,40 +177,39 @@ if (isset($_GET['lessonid'])) {
 </head>
 
 <body>
-    <?php include 'includes/header.php'; ?>
-
+    <?php include 'includes/header.php' ?>
     <div class="container">
+
+        <?php $delay = 0 ?>
         <section class="lesson-section">
-            <h1 class="lesson-title"><?= $lesson['title'] ?></h1>
-            <p class="lesson-description"><?= $lesson['description'] ?></p>
+            <h1 class="lesson-title" style="animation-delay: <?= $delay ?>s"><?= $lesson['title'] ?></h1>
+            <p class="lesson-description" style="animation-delay: <?= $delay += 0.2 ?>s"><?= $lesson['description'] ?></p>
 
-            <hr>
+            <hr style="animation-delay: <?= $delay + 0.3 ?>s">
 
-            <?php foreach ($lesson_items as $item): ?>
+            <?php foreach ($lesson_items as $index => $item): ?>
                 <?php if ($item['type'] == 'content'): ?>
                     <div class="lesson-content">
-                        <h2><?= $item['title'] ?></h2>
-                        <p style="white-space: pre-wrap;"><?= $item['description'] ?></p>
+                        <h2 id="Teppa" style="animation-delay: <?= $delay += 0.2 ?>s;"><?= $item['title'] ?></h2>
+                        <p id="Teppa" style="white-space: pre-wrap; animation-delay: <?= $delay += 0.2 ?>s;"><?= $item['description'] ?></p>
                     </div>
                 <?php elseif ($item['type'] == 'video'): ?>
                     <div class="video-wrapper">
-                        <h2 class="video-title"><?= $item['title'] ?></h2>
-                        <iframe src="https://youtube.com/embed/<?= $item['link'] ?>" title="<?= $item['title'] ?>"></iframe>
-                        <p style="white-space: pre-wrap;"><?= $item['description'] ?></p>
+                        <h2 class="video-title" id="Teppa" style="animation-delay: <?= $delay += 0.2 ?>s;"><?= $item['title'] ?></h2>
+                        <iframe src="https://youtube.com/embed/<?= $item['link'] ?>" title="<?= $item['title'] ?>" id="Teppa" style="animation-delay: <?= $delay += 0.2 ?>s;"></iframe>
+                        <p id="Teppa" style="white-space: pre-wrap; animation-delay: <?= $delay += 0.2 ?>s;"><?= $item['description'] ?></p>
                     </div>
-
-                    <br>
                 <?php endif; ?>
             <?php endforeach; ?>
 
-            <div class="action-buttons">
+            <div class="action-buttons" id="Teppa" style="white-space: pre-wrap; animation-delay: <?= $delay += 0.2 ?>s;">
                 <a href="lessons.php">Back to Lessons</a>
                 <a href="worksheet.php?lessonid=<?= $lessonid ?>">Worksheet </a>
             </div>
         </section>
-    </div>
 
-    <?php include 'includes/footer.php'; ?>
+    </div>
+    <?php include 'includes/footer.php' ?>
 </body>
 
 </html>
