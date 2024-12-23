@@ -1,4 +1,4 @@
-<?php include 'auth.php'?>
+<?php include 'auth.php' ?>
 <?
 
 $lessonid = isset($_GET['lessonid']) ? intval($_GET['lessonid']) : null;
@@ -296,20 +296,19 @@ $lessons = $query->select('lesson_items', '*', "lesson_id = '$lessonid' ORDER BY
                                     <label for="lessonid" style="display: block; font-size: 18px; font-weight: bold; color: #333; margin-bottom: 8px;">Select a Lesson</label>
                                     <select name="lessonid" id="lessonid" class="form-control" style="width: 100%; padding: 5px; font-size: 16px; border: 1px solid #ccc; border-radius: 4px; background-color: #fff; color: #333;">
                                         <option value="" selected disabled>-- Select a Lesson --</option>
-                                        <?php foreach ($lessons as $lesson): ?>
+                                        <?php foreach ($lessons as $index => $lesson): ?>
                                             <option value="<?= $lesson['id'] ?>" <?= $lesson['id'] == $lessonid ? 'selected' : '' ?>>
-                                                <?= $lesson['id'] . ". " . $lesson['title'] ?>
+                                                <?= $index + 1 . ". " . $lesson['title'] ?>
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
                                 </div>
 
                                 <div class="form-group" style="text-align: center;">
-                                    <button type="submit" class="btn btn-primary" style="padding: 12px 30px; font-size: 16px; background-color: #007bff; border: none; border-radius: 4px; color: white; cursor: pointer; transition: background-color 0.3s;">
-                                        Submit
-                                    </button>
+                                    <button type="submit" class="btn btn-primary">Select Lesson</button>
                                 </div>
                             </form>
+
                         <?php endif; ?>
 
                     </div>

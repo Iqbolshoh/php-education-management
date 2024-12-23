@@ -27,9 +27,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['delete'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id'])) {
-    $id = $_POST['id'];
-    $title = $_POST['title'];
-    $description = $_POST['description'];
+    $id = $_POST['id'] ?? null;
+    $title = $_POST['title'] ?? null;
+    $description = $_POST['description'] ?? null;
 
     $update = $query->update('lessons', [
         'title' => $title,
