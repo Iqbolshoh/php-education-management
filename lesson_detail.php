@@ -36,7 +36,7 @@ if (isset($_GET['lessonid'])) {
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         .container {
-            max-width: 9000px;
+            max-width: 900px;
             margin: 20px auto;
             padding: 30px;
             background-color: #ffffff;

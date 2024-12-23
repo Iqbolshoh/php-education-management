@@ -29,9 +29,11 @@
         <div class="footer-bottom">
             <p>&copy; 2024 UZWRITER.UZ. All Rights Reserved.</p><br>
         </div>
+    </div>
 
-        <hr><br>
+    <hr><br>
 
+    <div class="max-with-container">
         <div class="footer-b">
             <h2>Developer: <a href="https://iqbolshoh.uz/">Iqbolshoh dev</a></h2><br>
             <p>Need programming services? Web development and more!</p>
