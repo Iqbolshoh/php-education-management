@@ -49,11 +49,14 @@
         width: 100%;
     }
 
+    .max-with-container {
+        padding: 1.2rem 2.5rem;
+    }
+
     .footer-content {
         display: flex;
         justify-content: space-between;
         width: 100%;
-        padding: 1.2rem 2.5rem;
         flex-wrap: wrap;
         margin-bottom: 2rem;
     }
