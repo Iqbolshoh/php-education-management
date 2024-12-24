@@ -9,7 +9,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lessons - UZWRITER.UZ</title>
+    <title>Lessons - Letter.uz</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
         .section {
@@ -146,27 +146,28 @@
             <p class="section__content">Discover our carefully crafted lessons designed to help you improve your English skills at every level, from beginner to advanced. Whether you're looking to build a solid foundation or enhance your fluency, we’ve got the perfect lesson for you. Start your journey below and unlock your potential to speak and write with confidence!</p>
         </section>
 
-        <section class="section lessons-list">
-            <?php
+    </div>
 
-            $delay = 0;
+    <section class="section lessons-list">
+        <?php
 
-            foreach ($lessons as $lesson): ?>
-                <div class="lesson-card" style="animation-delay: <?= $delay ?>s;">
-                    <h3><?= $lesson['title'] ?></h3>
-                    <p><?= $lesson['description'] ?></p>
-                    <a href="lesson_detail.php?lessonid=<?= urlencode($lesson['id']) ?>">
-                        <button class="btn">Start Learning</button>
-                    </a>
-                </div>
-            <?php
-                $delay += 0.3;
-            endforeach;
-            
-            ?>
-        </section>
+        $delay = 0;
 
-        </div>
+        foreach ($lessons as $lesson): ?>
+            <div class="lesson-card" style="animation-delay: <?= $delay ?>s;">
+                <h3><?= $lesson['title'] ?></h3>
+                <p><?= $lesson['description'] ?></p>
+                <a href="lesson_detail.php?lessonid=<?= urlencode($lesson['id']) ?>">
+                    <button class="btn">Start Learning</button>
+                </a>
+            </div>
+        <?php
+            $delay += 0.3;
+        endforeach;
+
+        ?>
+    </section>
+
     <?php include 'includes/footer.php' ?>
 </body>
 

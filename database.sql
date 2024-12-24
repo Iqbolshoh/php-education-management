@@ -1,8 +1,8 @@
-DROP DATABASE IF EXISTS UZWRITER_UZ;
+DROP DATABASE IF EXISTS letter_edu;
 
-CREATE DATABASE IF NOT EXISTS UZWRITER_UZ;
+CREATE DATABASE IF NOT EXISTS letter_edu;
 
-USE UZWRITER_UZ;
+USE letter_edu;
 
 CREATE TABLE IF NOT EXISTS users (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -101,6 +101,9 @@ CREATE TABLE answers (
     answer_text VARCHAR(255) NOT NULL,
     FOREIGN KEY (question_id) REFERENCES questions(id)
 );
+
+-- Login: iqbolshoh
+-- Password: 1
 
 INSERT INTO
     users (

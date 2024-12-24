@@ -28,9 +28,9 @@ if (isset($_GET['lessonid'])) {
     $text_questions = $query->select('questions', '*', "lesson_id = $lessonid");
     if (isset($text_questions)) {
         $text_questionid = $text_questions[0]['id'];
+        $text_options = $query->select('answers', '*', "question_id = '$text_questionid'");
+        $text_optionsSelecs = $text_options;
     }
-    $text_options = $query->select('answers', '*', "question_id = '$text_questionid'");
-    $text_optionsSelecs = $text_options;
 
     shuffle($tests);
     shuffle($tru_falses);

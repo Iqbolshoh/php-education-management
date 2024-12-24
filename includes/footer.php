@@ -2,7 +2,7 @@
     <div class="max-with-container">
         <div class="footer-content">
             <div class="footer-logo">
-                <h1>UZWRITER.UZ</h1>
+                <h1>Letter.uz</h1>
                 <p>Start learning English.</p>
             </div>
 
@@ -27,11 +27,11 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2024 UZWRITER.UZ. All Rights Reserved.</p><br>
+            <p>&copy; 2024 Letter.uz. All Rights Reserved.</p><br>
         </div>
     </div>
 
-    <hr><br>
+    <hr style="background:rgb(255, 255, 255) !important;"><br>
 
     <div class="max-with-container">
         <div class="footer-b">
