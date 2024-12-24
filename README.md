@@ -2,26 +2,27 @@
 
 The `letter_edu` project provides a robust and flexible platform for educational management. With an intuitive admin panel and dynamic features, it simplifies handling various administrative tasks while offering users a seamless experience. 
 
-![Business Website Banner](https://github.com/Iqbolshoh/template-business-website/blob/main/assets/img/banner-1.png)
+![Business Website Banner](https://github.com/Iqbolshoh/letter-edu/blob/main/images/banner-1.png)
 
 ### Project Characteristics
 
 - **Education-Focused:** This template suits schools, colleges, and educational institutes. It ensures an elegant online representation for courses, faculty, and student management systems.
 
-![Business Website Banner](https://github.com/Iqbolshoh/template-business-website/blob/main/assets/img/banner-2.png)
+![Business Website Banner](https://github.com/Iqbolshoh/letter-edu/blob/main/images/banner-2.png)
 
 ### Admin Panel
 
 The admin panel is crafted for easy management of the platform. It empowers users to update courses, manage student information, and upload resources with ease.
 
-![Admin Panel](https://github.com/Iqbolshoh/template-business-website/blob/main/assets/img/admin-panel-1.png)
+![Admin Panel](https://github.com/Iqbolshoh/letter-edu/blob/main/images/banner-3.png)
+![Admin Panel](https://github.com/Iqbolshoh/letter-edu/blob/main/images/banner-4.png)
 
 ### Admin Panel Features:
 - **Content Management:** Effortlessly modify course descriptions, images, and other educational materials.
 - **Student Management:** Maintain records of enrolled students and their progress.
 - **Resource Sharing:** Upload and share documents, videos, or other educational resources.
 
-![Admin Panel](https://github.com/Iqbolshoh/template-business-website/blob/main/assets/img/admin-panel-2.png)
+![Admin Panel](https://github.com/Iqbolshoh/letter-edu/blob/main/images/banner-5.png)
 
 ### Technologies Used
 
