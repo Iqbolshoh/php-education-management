@@ -1,5 +1,4 @@
 <?php
-
 session_start();
 
 if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
@@ -9,28 +8,6 @@ if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true) {
 
 include '../config.php';
 $query = new Database();
-
-if (isset($_COOKIE['username']) && isset($_COOKIE['session_token'])) {
-
-    if (session_id() !== $_COOKIE['session_token']) {
-        session_write_close();
-        session_id($_COOKIE['session_token']);
-        session_start();
-    }
-
-    $result = $query->select('users', '*', 'username', $_COOKIE['username'])[0];
-
-    $_SESSION['loggedin'] = true;
-    $_SESSION['username'] = $_COOKIE['username'];
-    $_SESSION['user_id'] = $result['id'];
-    $_SESSION['first_name'] = $result['first_name'];
-    $_SESSION['last_name'] = $result['last_name'];
-
-    print_r($result);
-
-    header("Location: ../");
-    exit;
-}
 
 if (isset($_POST['submit'])) {
     $username = $_POST['username'];
@@ -45,9 +22,6 @@ if (isset($_POST['submit'])) {
         $_SESSION['username'] = $user['username'];
         $_SESSION['first_name'] = $user['first_name'];
         $_SESSION['last_name'] = $user['last_name'];
-
-        setcookie('username', $username, time() + (86400 * 30), "/", "", true, true);
-        setcookie('session_token', session_id(), time() + (86400 * 30), "/", "", true, true)
 ?>
         <script>
             window.onload = function() {
