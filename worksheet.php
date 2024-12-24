@@ -132,7 +132,6 @@ if (isset($_GET['lessonid'])) {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="./style.css">
         <title>WorkSheet | Task for: <?= $lesson[0]['title'] ?></title>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     </head>
@@ -157,7 +156,7 @@ if (isset($_GET['lessonid'])) {
 
         form {
             margin: 0 auto;
-            width: calc(100% - 40px);
+            width: 100%;
             max-width: 900px;
             padding: 20px;
             border-radius: 8px;
@@ -271,6 +270,11 @@ if (isset($_GET['lessonid'])) {
         }
 
         @media screen and (max-width: 768px) {
+            .container {
+                width: 100%;
+                padding: 0px !important;
+            }
+
             .title {
                 font-size: 2rem;
             }
