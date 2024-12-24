@@ -113,7 +113,7 @@
     <div class="container">
 
         <section class="hero">
-            <h1 class="hero__title">Welcome to Letter.uz</h1>
+            <h1 class="hero__title">Welcome to Letter edu</h1>
             <p class="hero__subtitle">Your trusted platform for online education and services.</p>
             <a href="about.php"><button class="hero__button">About US</button></a>
         </section>
@@ -121,10 +121,10 @@
         <br>
 
         <section class="features">
-            <p class="hero__subtitle">Letter.uz is an online platform dedicated to helping individuals learn English
+            <p class="hero__subtitle">Letter edu is an online platform dedicated to helping individuals learn English
                 efficiently. Our mission is to provide high-quality education with interactive exercises, vocabulary
                 building, and advanced language skills to help users progress and master the English language. Whether
-                you're a beginner or looking to enhance your proficiency, Letter.uz has the right tools to assist you
+                you're a beginner or looking to enhance your proficiency, Letter edu has the right tools to assist you
                 in your learning journey.</p>
         </section>
 

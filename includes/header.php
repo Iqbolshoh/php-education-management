@@ -141,7 +141,7 @@
 
 <header class="header">
     <nav class="navbar">
-        <a href="/" class="logo">Letter.uz</a>
+        <a href="/" class="logo">Letter edu</a>
 
         <?php
         $current_page = basename($_SERVER['PHP_SELF']);

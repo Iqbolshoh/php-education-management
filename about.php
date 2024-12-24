@@ -102,7 +102,7 @@
         <br>
 
         <section class="section features">
-            <h2 class="section__title">Features of Letter.uz</h2>
+            <h2 class="section__title">Features of Letter edu</h2>
             <p class="section__content">Our platform offers a variety of features to help you succeed:</p>
             <ul style="font-size: 1.5rem; text-align: left; margin-left: 15%; max-width: 800px; line-height: 1.8;">
                 <li>Interactive Lessons for Different Levels</li>

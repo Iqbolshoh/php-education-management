@@ -2,7 +2,7 @@
     <div class="max-with-container">
         <div class="footer-content">
             <div class="footer-logo">
-                <h1>Letter.uz</h1>
+                <h1>Letter edu</h1>
                 <p>Start learning English.</p>
             </div>
 
@@ -27,7 +27,7 @@
         </div>
 
         <div class="footer-bottom">
-            <p>&copy; 2024 Letter.uz. All Rights Reserved.</p><br>
+            <p>&copy; 2024 Letter edu. All Rights Reserved.</p><br>
         </div>
     </div>
 
