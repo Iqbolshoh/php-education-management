@@ -14,8 +14,6 @@ The `letter_edu` project offers a comprehensive and adaptable platform designed 
 
 The admin panel has been designed with ease of use in mind, empowering administrators to update courses, manage student records, and upload educational resources effortlessly.
 
-Certainly! Here’s the updated description with specific explanations for the banners you mentioned:
-
 ### Admin Panel Features:
 
 - **Admin Dashboard**  
