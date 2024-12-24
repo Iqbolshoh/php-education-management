@@ -6,7 +6,7 @@ The `letter_edu` project offers a comprehensive and adaptable platform designed 
 
 ### Project Features
 
-- **Education-Oriented:** Tailored for schools, colleges, and educational institutions, this template offers an elegant and professional online presence for courses, faculty, and student management systems.
+- **Education-Oriented:** Tailored for schools, colleges, and educational institutions. Whether you're handling course content, managing student data, or facilitating resource sharing, this platform streamlines the process and enhances the overall educational experience.
 
 ![Courses & Tests](https://github.com/Iqbolshoh/letter-edu/blob/main/images/banner-2.png)
 
