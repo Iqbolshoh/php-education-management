@@ -2,10 +2,6 @@
 
 The `letter_edu` project provides a robust and flexible platform for educational management. With an intuitive admin panel and dynamic features, it simplifies handling various administrative tasks while offering users a seamless experience. 
 
-## Template Business Website
-
-The `template-business-website` serves as a business website model created using PHP and HTML/CSS. This project is tailored for educational businesses, providing a sleek and functional online presence. The template is highly customizable to fit diverse needs.
-
 ![Business Website Banner](https://github.com/Iqbolshoh/template-business-website/blob/main/assets/img/banner-1.png)
 
 ### Project Characteristics
