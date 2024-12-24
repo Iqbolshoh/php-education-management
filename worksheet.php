@@ -26,7 +26,9 @@ if (isset($_GET['lessonid'])) {
     $matchings = $query->select('matching', '*', "lesson_id = $lessonid");
 
     $text_questions = $query->select('questions', '*', "lesson_id = $lessonid");
-    $text_questionid = $text_questions[0]['id'];
+    if (isset($text_questions)) {
+        $text_questionid = $text_questions[0]['id'];
+    }
     $text_options = $query->select('answers', '*', "question_id = '$text_questionid'");
     $text_optionsSelecs = $text_options;
 
