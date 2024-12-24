@@ -12,14 +12,11 @@ The `letter_edu` project offers a comprehensive and adaptable platform designed 
 
 ## Admin Panel Features
 
+  ![Admin Dashboard](https://github.com/Iqbolshoh/letter-edu/blob/main/images/banner-3.png)
+
 ### Admin Panel
 
 The admin panel has been designed with ease of use in mind, empowering administrators to update courses, manage student records, and upload educational resources effortlessly.
-
-### Admin Dashboard
-  The Admin Dashboard gives a quick overview of the platform, displaying essential information about courses, students, and recent activities. This allows administrators to stay informed and manage the platform effectively.
-
-  ![Admin Dashboard](https://github.com/Iqbolshoh/letter-edu/blob/main/images/banner-3.png)
 
 ### Add Topics
   This feature allows administrators to easily add new topics to the courses. By updating course content, administrators can ensure that learning materials are always current and relevant for students.
