@@ -2,7 +2,6 @@
 include 'config.php';
 $query = new Database();
 
-
 if (isset($_GET['lessonid'])) {
     $lessonid = intval($_GET['lessonid']);
     $participant_name = $_GET['participant_name'] ?? null;
@@ -26,10 +25,13 @@ if (isset($_GET['lessonid'])) {
     $matchings = $query->select('matching', '*', "lesson_id = $lessonid");
 
     $text_questions = $query->select('questions', '*', "lesson_id = $lessonid");
-    if (isset($text_questions)) {
+
+    if (!empty($text_questions) && isset($text_questions[0]['id'])) {
         $text_questionid = $text_questions[0]['id'];
         $text_options = $query->select('answers', '*', "question_id = '$text_questionid'");
         $text_optionsSelecs = $text_options;
+    } else {
+        $text_optionsSelecs = [];
     }
 
     shuffle($tests);
@@ -102,9 +104,9 @@ if (isset($_GET['lessonid'])) {
             'answered_questions' => $correctAnswersCount,
             'total_questions' => $totalQuestions
         ]);
-?>
+        ?>
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("DOMContentLoaded", function () {
                 var correctAnswersCount = <?php echo $correctAnswersCount; ?>;
                 var totalQuestions = <?php echo $totalQuestions; ?>;
                 var percentage = <?php echo $percentage; ?>;
@@ -122,7 +124,7 @@ if (isset($_GET['lessonid'])) {
                 });
             });
         </script>
-    <?php
+        <?php
     }
     ?>
 
@@ -374,29 +376,31 @@ if (isset($_GET['lessonid'])) {
 
             <h1 class="title">Task for: <?= $lesson[0]['title'] ?></h1>
 
-            <?php if ($participant_name) : ?>
+            <?php if ($participant_name): ?>
 
-                <?php if (!empty($tests) || !empty($tru_falses) || !empty($dropdowns) || !empty($fill_in_the_blanks) || !empty($matchings) || !empty($text_questions)) : ?>
+                <?php if (!empty($tests) || !empty($tru_falses) || !empty($dropdowns) || !empty($fill_in_the_blanks) || !empty($matchings) || !empty($text_questions)): ?>
                     <form method="post">
 
                         <div id="delay-animation" style="animation-delay: <?= $delay += 0.2 ?>s">
-                            <?php if (!empty($tests)) : ?>
+                            <?php if (!empty($tests)): ?>
                                 <h3 class="title_h3" style="animation-delay: <?= $delay += 0.1 ?>s">Test Questions</h3>
                                 <div class="task_item" style="animation-delay: <?= $delay += 0.1 ?>s">
-                                    <?php foreach ($tests as $index => $test) :
+                                    <?php foreach ($tests as $index => $test):
                                         $testid = $test['id'];
                                         $options = $query->select('test_options', '*', "test_id = $testid");
                                         shuffle($options);
-                                    ?>
+                                        ?>
                                         <div id="delay-animation" style="animation-delay: <?= $delay += 0.1 ?>s">
                                             <label for="test_question_<?= $testid; ?>">
                                                 <p style="white-space: pre-wrap;"><?= ($index + 1) . ')   ' . $test['question'] ?></p>
                                             </label><br>
 
                                             <div class="options">
-                                                <?php foreach ($options as $option) : ?>
+                                                <?php foreach ($options as $option): ?>
                                                     <label>
-                                                        <input type="radio" name="test_answer_<?= $testid; ?>" id="test_answer_<?= $option['id']; ?>" value="<?= $option['id'] ?>"><?= $option['option_text'] ?>
+                                                        <input type="radio" name="test_answer_<?= $testid; ?>"
+                                                            id="test_answer_<?= $option['id']; ?>"
+                                                            value="<?= $option['id'] ?>"><?= $option['option_text'] ?>
                                                     </label><br>
                                                 <?php endforeach; ?>
                                             </div>
@@ -408,20 +412,23 @@ if (isset($_GET['lessonid'])) {
                         </div>
 
                         <div id="delay-animation" style="animation-delay: <?= $delay += 0.1 ?>s">
-                            <?php if (!empty($tru_falses)) : ?>
+                            <?php if (!empty($tru_falses)): ?>
                                 <h3 class="title_h3">True/False Questions</h3>
                                 <div class="task_item">
-                                    <?php foreach ($tru_falses as $index => $tru_false) : ?>
+                                    <?php foreach ($tru_falses as $index => $tru_false): ?>
                                         <div id="delay-animation" style="animation-delay: <?= $delay += 0.1 ?>s">
                                             <label for="tru_false_statement_<?= $tru_false['id']; ?>">
-                                                <p style="white-space: pre-wrap;"> <?= ($index + 1) . ')   ' . $tru_false['statement'] ?></p>
+                                                <p style="white-space: pre-wrap;"> <?= ($index + 1) . ')   ' . $tru_false['statement'] ?>
+                                                </p>
                                             </label><br>
                                             <div class="options">
                                                 <label for="tru_false_answer_<?= $tru_false['id']; ?>_true">
-                                                    <input type="radio" id="tru_false_answer_<?= $tru_false['id']; ?>_true" name="tru_false_answer_<?= $tru_false['id']; ?>" value="1"> True
+                                                    <input type="radio" id="tru_false_answer_<?= $tru_false['id']; ?>_true"
+                                                        name="tru_false_answer_<?= $tru_false['id']; ?>" value="1"> True
                                                 </label><br>
                                                 <label for="tru_false_answer_<?= $tru_false['id']; ?>_false">
-                                                    <input type="radio" id="tru_false_answer_<?= $tru_false['id']; ?>_false" name="tru_false_answer_<?= $tru_false['id']; ?>" value="0"> False
+                                                    <input type="radio" id="tru_false_answer_<?= $tru_false['id']; ?>_false"
+                                                        name="tru_false_answer_<?= $tru_false['id']; ?>" value="0"> False
                                                 </label><br>
                                             </div>
                                             <hr>
@@ -433,20 +440,21 @@ if (isset($_GET['lessonid'])) {
                         </div>
 
                         <div id="delay-animation" style="animation-delay: <?= $delay += 0.1 ?>s">
-                            <?php if (!empty($dropdowns)) : ?>
+                            <?php if (!empty($dropdowns)): ?>
                                 <h3 class="title_h3">Dropdown Question</h3>
                                 <div class="task_item">
-                                    <?php foreach ($dropdowns as $index => $dropdown) : ?>
+                                    <?php foreach ($dropdowns as $index => $dropdown): ?>
                                         <?php $dropdownOptions[$index] = $dropdown['correct_answer']; ?>
                                     <?php endforeach; ?>
 
-                                    <?php foreach ($dropdowns as $index => $dropdown) : ?>
+                                    <?php foreach ($dropdowns as $index => $dropdown): ?>
                                         <div id="delay-animation" style="animation-delay: <?= $delay += 0.1 ?>s">
                                             <?php shuffle($dropdownOptions); ?>
                                             <label for="dropdown_question_<?= $dropdown['id']; ?>">
                                                 <p style="white-space: pre-wrap;"><?= ($index + 1) . ')   ' . $dropdown['question'] ?></p>
                                             </label><br>
-                                            <select name="dropdown_answer_<?= $dropdown['id']; ?>" id="dropdown_question_<?= $dropdown['id']; ?>" class="dropdown">
+                                            <select name="dropdown_answer_<?= $dropdown['id']; ?>"
+                                                id="dropdown_question_<?= $dropdown['id']; ?>" class="dropdown">
                                                 <option value="" disabled selected>-- Select Section --</option>
                                                 <?php foreach ($dropdownOptions as $dropdownOption): ?>
                                                     <option value="<?= $dropdownOption ?>"><?= $dropdownOption ?></option>
@@ -460,15 +468,16 @@ if (isset($_GET['lessonid'])) {
                         </div>
 
                         <div id="delay-animation" style="animation-delay: <?= $delay += 0.1 ?>s">
-                            <?php if (!empty($fill_in_the_blanks)) : ?>
+                            <?php if (!empty($fill_in_the_blanks)): ?>
                                 <h3 class="title_h3">Fill in the Blank Questions</h3>
                                 <div class="task_item">
-                                    <?php foreach ($fill_in_the_blanks as $index => $blank) : ?>
+                                    <?php foreach ($fill_in_the_blanks as $index => $blank): ?>
                                         <div id="delay-animation" style="animation-delay: <?= $delay += 0.1 ?>s">
                                             <label for="fill_in_the_blank_<?= $blank['id']; ?>">
                                                 <p style="white-space: pre-wrap;"><?= ($index + 1) . ')   ' . $blank['sentence'] ?> </p>
                                             </label><br>
-                                            <input type="text" name="fill_in_the_blank_answer_<?= $blank['id']; ?>" placeholder="Enter your answer"><br>
+                                            <input type="text" name="fill_in_the_blank_answer_<?= $blank['id']; ?>"
+                                                placeholder="Enter your answer"><br>
                                             <hr>
                                         </div>
                                     <?php endforeach; ?>
@@ -477,25 +486,27 @@ if (isset($_GET['lessonid'])) {
                         </div>
 
                         <div id="delay-animation" style="animation-delay: <?= $delay += 0.1 ?>s">
-                            <?php if (!empty($matchings)) : ?>
-                                <?php foreach ($matchings as $index => $matching) : ?>
+                            <?php if (!empty($matchings)): ?>
+                                <?php foreach ($matchings as $index => $matching): ?>
                                     <?php $matchingOptions[$index] = $matching['right_side']; ?>
                                 <?php endforeach; ?>
 
                                 <h3 class="title_h3">Matching Questions</h3>
                                 <div class="task_item">
-                                    <?php foreach ($matchings as $index => $matching) : ?>
+                                    <?php foreach ($matchings as $index => $matching): ?>
                                         <div id="delay-animation" style="animation-delay: <?= $delay += 0.1 ?>s">
                                             <?php shuffle($matchingOptions); ?>
                                             <div class="matching-question">
                                                 <div class="left-side">
                                                     <label for="matching_<?= $matching['id']; ?>">
-                                                        <p style="white-space: pre-wrap;"><?= ($index + 1) . ')   '  . $matching['left_side'] ?></p>
+                                                        <p style="white-space: pre-wrap;">
+                                                            <?= ($index + 1) . ')   ' . $matching['left_side'] ?></p>
                                                     </label>
                                                 </div>
 
                                                 <div class="right-side">
-                                                    <select name="matching_answer_<?= $matching['id']; ?>" id="matching_<?= $matching['id']; ?>" class="matching-dropdown">
+                                                    <select name="matching_answer_<?= $matching['id']; ?>"
+                                                        id="matching_<?= $matching['id']; ?>" class="matching-dropdown">
                                                         <option value="" disabled selected>-- Select Section --</option>
                                                         <?php foreach ($matchingOptions as $matchingOption): ?>
                                                             <option value="<?= $matchingOption ?>"><?= $matchingOption ?></option>
@@ -511,7 +522,7 @@ if (isset($_GET['lessonid'])) {
                         </div>
 
                         <div id="delay-animation" style="animation-delay: <?= $delay += 0.1 ?>s">
-                            <?php if (!empty($text_questions)) : ?>
+                            <?php if (!empty($text_questions)): ?>
                                 <h3 class="title_h3">Question:</h3>
                                 <p style="white-space: pre-wrap;" class="question-text"><?= $text_questions[0]['question_text'] ?></p>
                                 <div class="answers-container">
@@ -521,8 +532,10 @@ if (isset($_GET['lessonid'])) {
                                             <?php shuffle($text_optionsSelecs); ?>
 
                                             <div class="answer-option">
-                                                <label for="answer-<?= $text_index ?>" class="answer-label"><?= $text_index + 1 . ") " ?></label>
-                                                <select name="answers[<?= $text_index ?>]" id="answer-<?= $text_index ?>" class="answer-select">
+                                                <label for="answer-<?= $text_index ?>"
+                                                    class="answer-label"><?= $text_index + 1 . ") " ?></label>
+                                                <select name="answers[<?= $text_index ?>]" id="answer-<?= $text_index ?>"
+                                                    class="answer-select">
                                                     <option value="" disabled selected>-- Select Section --</option>
                                                     <?php foreach ($text_optionsSelecs as $text_optionsSelec) { ?>
                                                         <option value="<?= $text_optionsSelec['answer_text'] ?>">
@@ -548,7 +561,7 @@ if (isset($_GET['lessonid'])) {
                 <div style="min-height: 80vh"></div>
 
                 <script>
-                    document.addEventListener("DOMContentLoaded", function() {
+                    document.addEventListener("DOMContentLoaded", function () {
                         Swal.fire({
                             title: "Enter your name",
                             input: "text",
@@ -581,7 +594,7 @@ if (isset($_GET['lessonid'])) {
     </body>
 
     </html>
-<?php
+    <?php
 } else {
     header('Location: lessons.php');
     exit();
