@@ -1,6 +1,6 @@
-# Letter_Edu
+# php-education-management
 
-The `letter_edu` project offers a comprehensive and adaptable platform designed for educational management. With its intuitive admin panel and dynamic features, it streamlines the management of administrative tasks, ensuring a seamless experience for both educators and students.
+The `php-education-management` project offers a comprehensive and adaptable platform designed for educational management. With its intuitive admin panel and dynamic features, it streamlines the management of administrative tasks, ensuring a seamless experience for both educators and students.
 
 ![Homepage Banner](https://github.com/Iqbolshoh/letter-edu/blob/main/images/banner-1.png)
 
