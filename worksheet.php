@@ -30,7 +30,7 @@ if (isset($_GET['lessonid'])) {
 
     if (!empty($text_questions) && isset($text_questions[0]['id'])) {
         $text_questionid = $text_questions[0]['id'];
-        $text_options = $query->select('answers', '*', "question_id = '$text_questionid'");
+        $text_options = $query->select('answers', '*', "question_id = '$text_questionid'") ?? [];
         $text_optionsSelecs = $text_options;
     }
 
