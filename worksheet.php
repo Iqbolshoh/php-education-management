@@ -23,12 +23,11 @@ if (isset($_GET['lessonid'])) {
     $dropdowns = $query->select('dropdown', '*', "lesson_id = $lessonid");
     $fill_in_the_blanks = $query->select('fill_in_the_blank', '*', "lesson_id = $lessonid");
     $matchings = $query->select('matching', '*', "lesson_id = $lessonid");
-
     $text_questions = $query->select('questions', '*', "lesson_id = $lessonid");
 
     if (!empty($text_questions) && isset($text_questions[0]['id'])) {
         $text_questionid = $text_questions[0]['id'];
-        $text_options = $query->select('answers', '*', "question_id = '$text_questionid'");
+        $text_options = $query->select('answers', '*', "question_id = '$text_questionid'") ?? [];
         $text_optionsSelecs = $text_options;
     } else {
         $text_optionsSelecs = [];
