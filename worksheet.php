@@ -10,7 +10,7 @@ if (isset($_GET['lessonid'])) {
         include '404.php';
         exit;
     }
-
+        
     $lesson = $query->select('lessons', '*', "id = $lessonid");
 
     if (empty($lesson)) {
