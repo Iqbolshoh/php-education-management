@@ -87,7 +87,6 @@ if (isset($_GET['lessonid'])) {
         }
 
         $text_submittedAnswers = $_POST['answers'] ?? [];
-
         foreach ($text_submittedAnswers as $text_index => $text_answer) {
             if ($text_answer === $text_correctAnswers[$text_index]) {
                 $correctAnswersCount++;
