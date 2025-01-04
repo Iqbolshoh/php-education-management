@@ -95,7 +95,7 @@ if (isset($_GET['lessonid'])) {
             }
         }
 
-        $totalQuestions = count($tests) + count($tru_falses) + count($dropdowns) + count($fill_in_the_blanks) + count($matchings) + count($text_correctAnswers);
+        $totalQuestions = count($tests) + count($tru_falses) + count($dropdowns) + count($fill_in_the_blanks) + count($matchings) + count($text_options);
         $percentage = ($correctAnswersCount / $totalQuestions) * 100;
 
         $query->insert('results', [
