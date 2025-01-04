@@ -25,12 +25,13 @@ if (isset($_GET['lessonid'])) {
     $matchings = $query->select('matching', '*', "lesson_id = $lessonid");
     $text_questions = $query->select('questions', '*', "lesson_id = $lessonid");
 
+    $text_options = [];
+    $text_optionsSelecs = [];
+
     if (!empty($text_questions) && isset($text_questions[0]['id'])) {
         $text_questionid = $text_questions[0]['id'];
-        $text_options = $query->select('answers', '*', "question_id = '$text_questionid'") ?? [];
+        $text_options = $query->select('answers', '*', "question_id = '$text_questionid'");
         $text_optionsSelecs = $text_options;
-    } else {
-        $text_optionsSelecs = [];
     }
 
     shuffle($tests);
@@ -87,13 +88,14 @@ if (isset($_GET['lessonid'])) {
         }
 
         $text_submittedAnswers = $_POST['answers'] ?? [];
+
         foreach ($text_submittedAnswers as $text_index => $text_answer) {
             if ($text_answer === $text_correctAnswers[$text_index]) {
                 $correctAnswersCount++;
             }
         }
 
-        $totalQuestions = count($tests) + count($tru_falses) + count($dropdowns) + count($fill_in_the_blanks) + count($matchings) + count($text_options);
+        $totalQuestions = count($tests) + count($tru_falses) + count($dropdowns) + count($fill_in_the_blanks) + count($matchings) + count($text_correctAnswers);
         $percentage = ($correctAnswersCount / $totalQuestions) * 100;
 
         $query->insert('results', [
@@ -102,9 +104,9 @@ if (isset($_GET['lessonid'])) {
             'answered_questions' => $correctAnswersCount,
             'total_questions' => $totalQuestions
         ]);
-        ?>
+?>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
+            document.addEventListener("DOMContentLoaded", function() {
                 var correctAnswersCount = <?php echo $correctAnswersCount; ?>;
                 var totalQuestions = <?php echo $totalQuestions; ?>;
                 var percentage = <?php echo $percentage; ?>;
@@ -122,7 +124,7 @@ if (isset($_GET['lessonid'])) {
                 });
             });
         </script>
-        <?php
+    <?php
     }
     ?>
 
@@ -387,7 +389,7 @@ if (isset($_GET['lessonid'])) {
                                         $testid = $test['id'];
                                         $options = $query->select('test_options', '*', "test_id = $testid");
                                         shuffle($options);
-                                        ?>
+                                    ?>
                                         <div id="delay-animation" style="animation-delay: <?= $delay += 0.1 ?>s">
                                             <label for="test_question_<?= $testid; ?>">
                                                 <p style="white-space: pre-wrap;"><?= ($index + 1) . ')   ' . $test['question'] ?></p>
@@ -559,7 +561,7 @@ if (isset($_GET['lessonid'])) {
                 <div style="min-height: 80vh"></div>
 
                 <script>
-                    document.addEventListener("DOMContentLoaded", function () {
+                    document.addEventListener("DOMContentLoaded", function() {
                         Swal.fire({
                             title: "Enter your name",
                             input: "text",
@@ -592,7 +594,7 @@ if (isset($_GET['lessonid'])) {
     </body>
 
     </html>
-    <?php
+<?php
 } else {
     header('Location: lessons.php');
     exit();
