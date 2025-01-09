@@ -1,4 +1,4 @@
-# php-education-management
+# PHP Education Management
 
 The `php-education-management` project offers a comprehensive and adaptable platform designed for educational management. With its intuitive admin panel and dynamic features, it streamlines the management of administrative tasks, ensuring a seamless experience for both educators and students.
 
