@@ -14,8 +14,9 @@ The `php-education-management` project offers a comprehensive and adaptable plat
 
 The admin panel has been designed with ease of use in mind, empowering administrators to update courses, manage student records, and upload educational resources effortlessly.
 
-
   ![Admin Dashboard](https://github.com/Iqbolshoh/letter-edu/blob/main/images/banner-3.png)
+  - **🖥 Admin Login:** `iqbolshoh`  
+- **🔑 Password:** `IQBOLSHOH`  
 
 ### Add Topics
   This feature allows administrators to easily add new topics to the courses. By updating course content, administrators can ensure that learning materials are always current and relevant for students.
