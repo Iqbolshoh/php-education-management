@@ -102,8 +102,12 @@ CREATE TABLE answers (
     FOREIGN KEY (question_id) REFERENCES questions(id)
 );
 
--- Login: iqbolshoh
--- Password: 1
+
+-- ==============================  
+-- 📥 DATA INSERTION (COMPLETE)  
+-- ==============================  
+-- DEFAULT PASSWORD: "IQBOLSHOH" (HASHED FOR SECURITY)  
+-- ==============================  
 
 INSERT INTO
     users (
@@ -119,7 +123,7 @@ VALUES
         'Ilhomjonov',
         'iilhomjonov777@gmail.com',
         'iqbolshoh',
-        '65c2a32982abe41b1e6ff888d351ee6b7ade33affd4a595667ea7db910aecaa8'
+        '52be5ff91284c65bac56f280df55f797a5c505f7ef66317ff358e34791507027'
     );
 
 INSERT INTO
