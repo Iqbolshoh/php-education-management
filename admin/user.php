@@ -1,14 +1,5 @@
-<?php
-
-session_start();
-
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("Location: ./login/");
-    exit;
-}
-
-include 'config.php';
-$query = new Database();
+<?php include 'auth.php'?>
+<?
 
 $user_id = $_SESSION['user_id'];
 $result = $query->select('users', '*', "id = $user_id");
