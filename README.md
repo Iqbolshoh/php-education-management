@@ -29,7 +29,7 @@ The **Admin Panel** is designed with **ease of use** in mind, enabling administr
 
 ![⚙ Admin Dashboard](https://github.com/Iqbolshoh/letter-edu/blob/main/images/banner-3.png)  
 
-🔑 **Admin Credentials**  
+🔐 **Admin Credentials**  
 - **👨‍💻 Admin Login:** `iqbolshoh`  
 - **🔑 Password:** `IQBOLSHOH`  
 
