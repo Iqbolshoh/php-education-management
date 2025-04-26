@@ -128,7 +128,7 @@
                 in your learning journey.</p>
         </section>
 
-        </div>
+    </div>
     <?php include 'includes/footer.php' ?>
 </body>
 

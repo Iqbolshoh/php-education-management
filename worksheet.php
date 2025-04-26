@@ -10,7 +10,7 @@ if (isset($_GET['lessonid'])) {
         include '404.php';
         exit;
     }
-        
+
     $lesson = $query->select('lessons', '*', "id = $lessonid");
 
     if (empty($lesson)) {
@@ -104,9 +104,9 @@ if (isset($_GET['lessonid'])) {
             'answered_questions' => $correctAnswersCount,
             'total_questions' => $totalQuestions
         ]);
-?>
+        ?>
         <script>
-            document.addEventListener("DOMContentLoaded", function() {
+            document.addEventListener("DOMContentLoaded", function () {
                 var correctAnswersCount = <?php echo $correctAnswersCount; ?>;
                 var totalQuestions = <?php echo $totalQuestions; ?>;
                 var percentage = <?php echo $percentage; ?>;
@@ -124,7 +124,7 @@ if (isset($_GET['lessonid'])) {
                 });
             });
         </script>
-    <?php
+        <?php
     }
     ?>
 
@@ -389,7 +389,7 @@ if (isset($_GET['lessonid'])) {
                                         $testid = $test['id'];
                                         $options = $query->select('test_options', '*', "test_id = $testid");
                                         shuffle($options);
-                                    ?>
+                                        ?>
                                         <div id="delay-animation" style="animation-delay: <?= $delay += 0.1 ?>s">
                                             <label for="test_question_<?= $testid; ?>">
                                                 <p style="white-space: pre-wrap;"><?= ($index + 1) . ')   ' . $test['question'] ?></p>
@@ -500,7 +500,8 @@ if (isset($_GET['lessonid'])) {
                                                 <div class="left-side">
                                                     <label for="matching_<?= $matching['id']; ?>">
                                                         <p style="white-space: pre-wrap;">
-                                                            <?= ($index + 1) . ')   ' . $matching['left_side'] ?></p>
+                                                            <?= ($index + 1) . ')   ' . $matching['left_side'] ?>
+                                                        </p>
                                                     </label>
                                                 </div>
 
@@ -561,7 +562,7 @@ if (isset($_GET['lessonid'])) {
                 <div style="min-height: 80vh"></div>
 
                 <script>
-                    document.addEventListener("DOMContentLoaded", function() {
+                    document.addEventListener("DOMContentLoaded", function () {
                         Swal.fire({
                             title: "Enter your name",
                             input: "text",
@@ -594,7 +595,7 @@ if (isset($_GET['lessonid'])) {
     </body>
 
     </html>
-<?php
+    <?php
 } else {
     header('Location: lessons.php');
     exit();

@@ -137,13 +137,17 @@
 
         <section class="section call-to-action">
             <h2 class="section__title">Our Lessons</h2>
-            <p class="section__content">Explore our lessons designed to help you master the English language at every level. Choose a lesson below to get started!</p>
+            <p class="section__content">Explore our lessons designed to help you master the English language at every
+                level. Choose a lesson below to get started!</p>
         </section>
 
         <br>
 
         <section class="section features">
-            <p class="section__content">Discover our carefully crafted lessons designed to help you improve your English skills at every level, from beginner to advanced. Whether you're looking to build a solid foundation or enhance your fluency, we’ve got the perfect lesson for you. Start your journey below and unlock your potential to speak and write with confidence!</p>
+            <p class="section__content">Discover our carefully crafted lessons designed to help you improve your English
+                skills at every level, from beginner to advanced. Whether you're looking to build a solid foundation or
+                enhance your fluency, we’ve got the perfect lesson for you. Start your journey below and unlock your
+                potential to speak and write with confidence!</p>
         </section>
 
     </div>
@@ -161,7 +165,7 @@
                     <button class="btn">Start Learning</button>
                 </a>
             </div>
-        <?php
+            <?php
             $delay += 0.3;
         endforeach;
 

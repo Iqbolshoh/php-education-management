@@ -183,7 +183,8 @@ if (isset($_GET['lessonid'])) {
         <?php $delay = 0 ?>
         <section class="lesson-section">
             <h1 class="lesson-title" style="animation-delay: <?= $delay ?>s"><?= $lesson['title'] ?></h1>
-            <p class="lesson-description" style="animation-delay: <?= $delay += 0.2 ?>s"><?= $lesson['description'] ?></p>
+            <p class="lesson-description" style="animation-delay: <?= $delay += 0.2 ?>s"><?= $lesson['description'] ?>
+            </p>
 
             <hr style="animation-delay: <?= $delay + 0.3 ?>s">
 
@@ -191,18 +192,23 @@ if (isset($_GET['lessonid'])) {
                 <?php if ($item['type'] == 'content'): ?>
                     <div class="lesson-content">
                         <h2 id="Teppa" style="animation-delay: <?= $delay += 0.2 ?>s;"><?= $item['title'] ?></h2>
-                        <p id="Teppa" style="white-space: pre-wrap; animation-delay: <?= $delay += 0.2 ?>s;"><?= $item['description'] ?></p>
+                        <p id="Teppa" style="white-space: pre-wrap; animation-delay: <?= $delay += 0.2 ?>s;">
+                            <?= $item['description'] ?></p>
                     </div>
                 <?php elseif ($item['type'] == 'video'): ?>
                     <div class="video-wrapper">
-                        <h2 class="video-title" id="Teppa" style="animation-delay: <?= $delay += 0.2 ?>s;"><?= $item['title'] ?></h2>
-                        <iframe src="https://youtube.com/embed/<?= $item['link'] ?>" title="<?= $item['title'] ?>" id="Teppa" style="animation-delay: <?= $delay += 0.2 ?>s;"></iframe>
-                        <p id="Teppa" style="white-space: pre-wrap; animation-delay: <?= $delay += 0.2 ?>s;"><?= $item['description'] ?></p>
+                        <h2 class="video-title" id="Teppa" style="animation-delay: <?= $delay += 0.2 ?>s;"><?= $item['title'] ?>
+                        </h2>
+                        <iframe src="https://youtube.com/embed/<?= $item['link'] ?>" title="<?= $item['title'] ?>" id="Teppa"
+                            style="animation-delay: <?= $delay += 0.2 ?>s;"></iframe>
+                        <p id="Teppa" style="white-space: pre-wrap; animation-delay: <?= $delay += 0.2 ?>s;">
+                            <?= $item['description'] ?></p>
                     </div>
                 <?php endif; ?>
             <?php endforeach; ?>
 
-            <div class="action-buttons" id="Teppa" style="white-space: pre-wrap; animation-delay: <?= $delay += 0.2 ?>s;">
+            <div class="action-buttons" id="Teppa"
+                style="white-space: pre-wrap; animation-delay: <?= $delay += 0.2 ?>s;">
                 <a href="lessons.php">Back to Lessons</a>
                 <a href="worksheet.php?lessonid=<?= $lessonid ?>">Worksheet </a>
             </div>
